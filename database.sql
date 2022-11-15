@@ -32,7 +32,7 @@ CREATE TABLE `account` (
   UNIQUE KEY `idaccount_UNIQUE` (`idaccount`),
   KEY `card_idx` (`cardnum`),
   CONSTRAINT `card` FOREIGN KEY (`cardnum`) REFERENCES `card` (`cardnum`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15232 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (15212,1111111,'27858',1543,0),(15213,1111111,'63007',1659,0),(15214,1111111,'72996',25,0),(15215,1111111,'93993',15256,0),(15216,1111111,'61773',96244,0),(15217,1111111,'97529',16093,0),(15218,1111111,'43637',112,0),(15219,1111111,'53299',99,0),(15220,1111111,'39904',0,8400),(15221,1111111,'88537',0,756),(15222,1111111,'96590',0,2000),(15223,1111111,'10926',0,5000),(15224,1111111,'88954',0,1000),(15225,1111111,'97414',0,546),(15226,1111111,'14390',0,12),(15227,1111111,'65276',0,10000),(15228,1111111,'31640',163,0),(15229,1111111,'46258',16474,0),(15230,1111111,'79953',7845,0),(15231,1111111,'96984',256,0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,6 +72,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
+INSERT INTO `card` VALUES ('10926','1673',5,1,0,0),('14390','8342',8,1,0,0),('27858','1568',2,0,0,0),('31640','2371',10,0,0,0),('39904','2341',13,1,0,0),('43637','8146',7,0,0,0),('46258','2960',11,0,0,0),('53299','9782',8,0,0,0),('61773','4767',6,0,0,0),('63007','5801',2,0,0,0),('65276','8677',9,1,0,0),('72996','8214',3,0,0,0),('79953','5509',12,0,0,0),('88537','3192',9,1,0,0),('88954','8367',7,1,0,0),('93993','6715',4,0,0,0),('96590','6781',1,1,0,0),('96984','9876',14,0,0,0),('97414','8024',7,1,0,0),('97529','9886',6,0,0,0);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +115,7 @@ CREATE TABLE `user` (
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +124,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Matti','Näsä'),(2,'Juha','Koistinen'),(3,'Mauno','Ahonen'),(4,'Pertti','Keinonen'),(5,'Sakari','Östermalm'),(6,'Esko','Mörkö'),(7,'Gerhard','Rihmakallo'),(8,'Kalervo','Jankko'),(9,'Maxwell','Gothenburg'),(10,'Elmeri','Hautamäki'),(11,'Dean','Kagelberg'),(12,'James','Kagelberg'),(13,'Raili','Rasinkangas'),(14,'Eugen','von Lahtinen');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-15 15:03:27
+-- Dump completed on 2022-11-15 23:38:18
