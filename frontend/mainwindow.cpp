@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->labelInfo->hide();
 }
 
 MainWindow::~MainWindow()
@@ -40,6 +41,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     response_data=reply->readAll();
     qDebug()<<response_data;
     int test=QString::compare(response_data,"false");
+    int test2=QString::compare(response_data,"locked");
     qDebug()<<test;
 
     if(response_data.length()==0){
@@ -55,11 +57,14 @@ void MainWindow::loginSlot(QNetworkReply *reply)
                 ui->cardpin->clear();
                 ui->labelInfo->setText("Tunnus ja salasana eivät täsmää");
             }
+            else if(test2==0)
+            {ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");}
             else {
                 ui->labelInfo->setText("Toimii");
             }
         }
     }
+    ui->labelInfo->show();
     reply->deleteLater();
     loginManager->deleteLater();
 

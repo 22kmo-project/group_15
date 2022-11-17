@@ -9,43 +9,41 @@ router.post("/", function (request, response) {
   if (request.body.cardnum && request.body.cardpin) {
     const cardnum = request.body.cardnum;
     const cardpin = request.body.cardpin;
+    console.log(cardnum + " , " + cardpin);
     card.checkCardPin(cardnum, function (dbError, dbResult) {
       if (dbError) {
         response.json(dbError.errno);
       } else {
-        card.checkLocked(cardnum, function (dbError, dbResult) {
-          if (dbResult[0].pin_tries >= 3) {
-            console.log(dbResult[0].pin_tries);
-            response.send(false);
-          } else {
-            if (dbResult.length > 0) {
+        if (dbResult.length > 0) {
+          card.checkLocked(cardnum, function (dbError, dbResult1) {
+            if (dbResult1[0].pin_tries >= 3) {
+              console.log(dbResult1[0].pin_tries);
+              response.send("locked");
+            } else {
               bcrypt.compare(
                 cardpin,
                 dbResult[0].cardpin,
-                function (err, compareResult) {
+                (err, compareResult) => {
                   if (compareResult) {
-                    card.resetFail(cardnum, function (dbError, dbResult) {
-                      console.log("set pin fails to 0");
-                    });
-                    console.log("success");
+                    card.resetFail(cardnum);
+                    console.log("login successful and pin fails set to 0");
+
                     const token = generateAccessToken({ card: cardnum });
                     response.send(token);
                   } else {
-                    console.log("wrong pin");
                     response.send(false);
                     //väärän pin koodin jälkeen kirjataan ylös väärä yritys
-                    card.addFail(cardnum, function (dbError, dbResult) {
-                      console.log("added fail to pin tries");
-                    });
+                    card.addFail(cardnum);
+                    console.log("wrong pin, increased pin_tries by 1");
                   }
                 }
               );
-            } else {
-              console.log("card does not exists");
-              response.send(false);
             }
-          }
-        });
+          });
+        } else {
+          console.log("card does not exists");
+          response.send(false);
+        }
       }
     });
   } else {
