@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtNetwork>
+#include <QNetworkAccessManager>
+#include <QJsonDocument>
+
+#include "url.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +22,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QNetworkAccessManager *loginManager;
+    QNetworkReply *reply;
+    QByteArray response_data;
+    QString cardnum;
+
+private slots:
+    void on_btnLogin_clicked();
+    void loginSlot (QNetworkReply *reply);
 };
 #endif // MAINWINDOW_H

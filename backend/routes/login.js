@@ -12,34 +12,40 @@ router.post("/", function (request, response) {
     card.checkCardPin(cardnum, function (dbError, dbResult) {
       if (dbError) {
         response.json(dbError.errno);
-      }
-      //tarkistetaan onko kortti lukittu
-      else if ((card.checkLocked = 1)) {
-        response.json({ body: "card locked" });
       } else {
-        if (dbResult.length > 0) {
-          bcrypt.compare(
-            cardpin,
-            dbResult[0].cardpin,
-            function (err, compareResult) {
-              if (compareResult) {
-                console.log("success");
-                const token = generateAccessToken({ card: cardnum });
-                response.send(token);
-              } else {
-                console.log("wrong pin");
-                response.send(false);
-                //väärän pin koodin jälkeen kirjataan ylös väärä yritys
-                card.addFail(cardnum, function (dbError, dbResult) {
-                  console.log("added fail to pin tries");
-                });
-              }
+        card.checkLocked(cardnum, function (dbError, dbResult) {
+          if (dbResult[0].pin_tries >= 3) {
+            console.log(dbResult[0].pin_tries);
+            response.send(false);
+          } else {
+            if (dbResult.length > 0) {
+              bcrypt.compare(
+                cardpin,
+                dbResult[0].cardpin,
+                function (err, compareResult) {
+                  if (compareResult) {
+                    card.resetFail(cardnum, function (dbError, dbResult) {
+                      console.log("set pin fails to 0");
+                    });
+                    console.log("success");
+                    const token = generateAccessToken({ card: cardnum });
+                    response.send(token);
+                  } else {
+                    console.log("wrong pin");
+                    response.send(false);
+                    //väärän pin koodin jälkeen kirjataan ylös väärä yritys
+                    card.addFail(cardnum, function (dbError, dbResult) {
+                      console.log("added fail to pin tries");
+                    });
+                  }
+                }
+              );
+            } else {
+              console.log("card does not exists");
+              response.send(false);
             }
-          );
-        } else {
-          console.log("card does not exists");
-          response.send(false);
-        }
+          }
+        });
       }
     });
   } else {
@@ -50,5 +56,7 @@ router.post("/", function (request, response) {
 
 function generateAccessToken(card) {
   dotenv.config();
-  return jwt.sign(card, process.env.MY_TOKEN, { expiresIn: "180s" });
+  return jwt.sign(card, process.env.TOKEN, { expiresIn: "180s" });
 }
+
+module.exports = router;
