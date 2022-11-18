@@ -21,17 +21,21 @@ function credit() {
 }
 
 for (var i = 1; i < 15; i++) {
-  a = makeid(8);
+  a = makeid(8).toString();
   b = i.toString().padStart(4, "0");
   c = credit();
-  console.log(card.add(a, b, i, c));
+  console.log(card.create(a, b, i, c));
 
   if (c == 1) {
-    d = Math.floor(Math.random() * 10) * 1000;
+    d = Math.floor(Math.random() * 10) * -1000;
   } else {
     d = 0;
   }
   e = Math.floor(Math.random() * 251) * 8;
-  f = makeid(5);
-  console.log(account.add(f, a, e, d));
+  f = makeid(5).toString();
+  g = makeid(5).toString();
+  console.log(account.create(f, a, e, 0));
+  if (c == 1) {
+    console.log(account.create(g, a, 0, d));
+  }
 }
