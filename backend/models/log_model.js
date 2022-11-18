@@ -20,8 +20,8 @@ const log = {
   },
   update: function (id, update_data, callback) {
     return db.query(
-      "update grade set idaccount=?,withdraw_amount=? where idlog=?",
-      [add_data.idaccount, add_data.withdraw_amount],
+      "update log set withdraw_amount=? where idlog=?",
+      [update_data.withdraw_amount, id],
       callback
     );
   },

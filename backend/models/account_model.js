@@ -11,7 +11,7 @@ const account = {
   add: function (add_data, callback) {
     return db.query(
       "insert into account values(?,?,?,?)",
-      [add_data.idaccount, add_date.cardnum, add_data.balance, add_data.credit],
+      [add_data.idaccount, add_data.cardnum, add_data.balance, add_data.credit],
       callback
     );
   },
@@ -21,7 +21,7 @@ const account = {
   update: function (id, update_data, callback) {
     return db.query(
       "update grade set cardnum=?,balance=?,credit=? where idaccount=?",
-      [add_date.cardnum, add_data.balance, add_data.credit],
+      [add_data.cardnum, add_data.balance, add_data.credit],
       callback
     );
   },
