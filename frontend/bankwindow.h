@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::BankWindow *ui;
+    bool usingCredit;
+    QString idaccount;
+    QString cardnum;
 };
 
 #endif // BANKWINDOW_H

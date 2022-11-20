@@ -16,6 +16,7 @@ router.post("/", function (request, response) {
       } else {
         if (dbResult.length > 0) {
           card.checkLocked(cardnum, function (dbError, dbResult1) {
+            //jos vääriä yrityksiä on 3 tai enemmän, kirjautuminen estetty
             if (dbResult1[0].pin_tries >= 3) {
               console.log(dbResult1[0].pin_tries);
               response.send("locked");
@@ -27,9 +28,16 @@ router.post("/", function (request, response) {
                   if (compareResult) {
                     card.resetFail(cardnum);
                     console.log("login successful and pin fails set to 0");
+                    card.getById(cardnum, function (dbError, dbResult) {
+                      let credit = dbResult[0].iscredit;
 
-                    const token = generateAccessToken({ card: cardnum });
-                    response.send(token);
+                      const token = generateAccessToken({ card: cardnum });
+                      //palautetaan json objektina token ja tieto onko korttissa credit ominaisuus
+                      response.json({
+                        token: token,
+                        credit: credit,
+                      });
+                    });
                   } else {
                     response.send(false);
                     //väärän pin koodin jälkeen kirjataan ylös väärä yritys
