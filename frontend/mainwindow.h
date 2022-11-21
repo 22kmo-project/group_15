@@ -30,5 +30,6 @@ private:
 private slots:
     void on_btnLogin_clicked();
     void loginSlot (QNetworkReply *reply);
+    void on_cardpin_returnPressed();
 };
 #endif // MAINWINDOW_H
