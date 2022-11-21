@@ -15,40 +15,17 @@ const account = {
       callback
     );
   },
+
   delete: function (id, callback) {
     return db.query("delete from account where idaccount=?", [id], callback);
   },
+
   update: function (id, update_data, callback) {
     return db.query(
       "update grade set cardnum=?,balance=?,credit=? where idaccount=?",
       [add_data.cardnum, add_data.balance, add_data.credit],
       callback
     );
-  },
-
-  checkBalance: function (idaccount, callback) {
-    return db.query(
-      "select balance,credit from account where idaccount=?",
-      idaccount,
-      callback
-    );
-  },
-
-  withdraw: function (idaccount, amount, callback) {
-    return db.query(
-      "UPDATE account SET balance = balance-? WHERE idaccount=?",
-      [amount, idaccount],
-      callback
-    );
-  },
-
-  create: function (idaccount, cardnum, balance, credit) {
-    return db.query("insert into account values(?,?,?,?)", [
-      idaccount,
-      cardnum,
-      balance,
-      credit,
-    ]);
   },
 };
 

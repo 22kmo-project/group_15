@@ -5,6 +5,10 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
+var cardRouter = require("./routes/card");
+var logRouter = require("./routes/log");
+var userRouter = require("./routes/user");
+var accountRouter = require("./routes/account");
 
 var app = express();
 
@@ -20,6 +24,10 @@ app.use("/login", loginRouter);
 //suojattu
 app.use(authenticate);
 app.use("/", indexRouter);
+app.use("/log", logRouter);
+app.use("/user", userRouter);
+app.use("/account", accountRouter);
+app.use("/card", cardRouter);
 
 function authenticate(req, res, next) {
   const authHeader = req.headers["authorization"];

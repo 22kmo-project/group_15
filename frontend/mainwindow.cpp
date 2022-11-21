@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->labelInfo->hide();
+    ui->labelInfo->setWordWrap(true);
 }
 
 MainWindow::~MainWindow()
@@ -44,6 +45,20 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     int test2=QString::compare(response_data,"locked");
     qDebug()<<test;
 
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonObject json_obj = json_doc.object();
+    QString token;
+    token = json_obj["token"].toString();
+
+    //mahdollista kortin valintaa varten rest api palauttaa json objektissa myös onko kortissa credit ominaisuus
+    bool credit;
+    if(json_obj["credit"].toInt() == 1){credit = true;}
+    else{credit = false;}
+
+    qDebug()<<token;
+    qDebug()<<credit;
+
+
     if(response_data.length()==0){
         ui->labelInfo->setText("Palvelin ei vastaa");
     }
@@ -60,7 +75,8 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             else if(test2==0)
             {ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");}
             else {
-                ui->labelInfo->setText("Toimii");
+                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1").arg(credit));
+
             }
         }
     }
