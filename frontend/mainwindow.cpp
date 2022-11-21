@@ -75,7 +75,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             else if(test2==0)
             {ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");}
             else {
-                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1").arg(credit));
+                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1 \t %2").arg(credit).arg(token));
 
             }
         }
@@ -85,3 +85,9 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     loginManager->deleteLater();
 
 }
+
+void MainWindow::on_cardpin_returnPressed()
+{
+    ui->btnLogin->click();
+}
+
