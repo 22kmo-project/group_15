@@ -11,17 +11,20 @@ CONFIG += c++17
 
 SOURCES += \
     bankwindow.cpp \
+    choosecard.cpp \
     main.cpp \
     mainwindow.cpp \
     url.cpp
 
 HEADERS += \
     bankwindow.h \
+    choosecard.h \
     mainwindow.h \
     url.h
 
 FORMS += \
     bankwindow.ui \
+    choosecard.ui \
     mainwindow.ui
 
 # Default rules for deployment.

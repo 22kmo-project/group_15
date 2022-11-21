@@ -12,14 +12,22 @@ class BankWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit BankWindow(QWidget *parent = nullptr);
+    explicit BankWindow(QString cardnum,bool credit,QWidget *parent = nullptr);
+
+    const QString &getWebToken() const;
+
+
+    void setWebToken(const QByteArray &newWebToken);
+
     ~BankWindow();
+
 
 private:
     Ui::BankWindow *ui;
     bool usingCredit;
     QString idaccount;
     QString cardnum;
+    QByteArray webToken;
 };
 
 #endif // BANKWINDOW_H

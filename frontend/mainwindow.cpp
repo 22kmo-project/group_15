@@ -13,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete objectBankWindow;
+    objectBankWindow=nullptr;
+    delete objectChooseCard;
+    objectChooseCard=nullptr;
 }
 
 void MainWindow::on_btnLogin_clicked()
@@ -75,6 +79,18 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             else if(test2==0)
             {ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");}
             else {
+                if(credit == true){
+                objectChooseCard=new choosecard(cardnum);
+                objectChooseCard->setWebToken("Bearer "+response_data);
+                objectChooseCard->show();
+                }
+                else{
+                    objectBankWindow=new BankWindow(cardnum, false);
+                    objectBankWindow->setWebToken("Bearer "+response_data);
+                    objectBankWindow->show();
+                }
+
+
                 ui->labelInfo->setText(QString("Toimii ja luottokortti: %1 \t %2").arg(credit).arg(token));
 
             }

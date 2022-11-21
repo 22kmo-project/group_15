@@ -7,6 +7,8 @@
 #include <QJsonDocument>
 
 #include "url.h"
+#include "choosecard.h"
+#include "bankwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,6 +28,8 @@ private:
     QNetworkReply *reply;
     QByteArray response_data;
     QString cardnum;
+    choosecard *objectChooseCard;
+    BankWindow *objectBankWindow;
 
 private slots:
     void on_btnLogin_clicked();
