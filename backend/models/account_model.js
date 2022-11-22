@@ -4,6 +4,7 @@ const account = {
   getById: function (id, callback) {
     return db.query("select * from account where idaccount=?", [id], callback);
   },
+
   getAll: function (callback) {
     return db.query("select * from account", callback);
   },
@@ -26,6 +27,9 @@ const account = {
       [add_data.cardnum, add_data.balance, add_data.credit],
       callback
     );
+  },
+  getAccount: function (cardnum, callback) {
+    return db.query("select*from account where cardnum=?", cardnum, callback);
   },
 };
 

@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->labelInfo->hide();
     ui->labelInfo->setWordWrap(true);
+    this->setWindowTitle("Kirjautuminen");
 }
 
 MainWindow::~MainWindow()
@@ -51,8 +52,10 @@ void MainWindow::loginSlot(QNetworkReply *reply)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonObject json_obj = json_doc.object();
-    QString token;
-    token = json_obj["token"].toString();
+    QString tokenstring;
+
+    tokenstring = json_obj["token"].toString();
+    QByteArray token = tokenstring.toUtf8();
 
     //mahdollista kortin valintaa varten rest api palauttaa json objektissa myös onko kortissa credit ominaisuus
     bool credit;
@@ -81,17 +84,16 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             else {
                 if(credit == true){
                 objectChooseCard=new choosecard(cardnum);
-                objectChooseCard->setWebToken("Bearer "+response_data);
+                objectChooseCard->setWebToken(token);
                 objectChooseCard->show();
                 }
                 else{
-                    objectBankWindow=new BankWindow(cardnum, false);
-                    objectBankWindow->setWebToken("Bearer "+response_data);
+                    objectBankWindow=new BankWindow(cardnum, false, token);
                     objectBankWindow->show();
                 }
 
 
-                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1 \t %2").arg(credit).arg(token));
+                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1").arg(credit));
 
             }
         }

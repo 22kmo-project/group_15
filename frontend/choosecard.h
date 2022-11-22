@@ -17,7 +17,7 @@ public:
     explicit choosecard(QString cardnum,QWidget *parent = nullptr);
     ~choosecard();
 
-    const QString &getWebToken() const;
+    const QByteArray &getWebToken() const;
 
 
     void setWebToken(const QByteArray &newWebToken);

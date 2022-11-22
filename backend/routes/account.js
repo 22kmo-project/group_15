@@ -51,4 +51,13 @@ router.put("/:id", function (request, response) {
     }
   });
 });
+router.get("/account/:id", function (request, response) {
+  account.getAccount(request.params.id, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
 module.exports = router;

@@ -3,6 +3,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+const jwt = require("jsonwebtoken");
+
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var cardRouter = require("./routes/card");
