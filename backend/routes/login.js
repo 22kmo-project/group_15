@@ -62,7 +62,7 @@ router.post("/", function (request, response) {
 
 function generateAccessToken(card) {
   dotenv.config();
-  return jwt.sign(card, process.env.TOKEN, { expiresIn: "180s" });
+  return jwt.sign(card, process.env.TOKEN, { expiresIn: "1800s" });
 }
 
 module.exports = router;

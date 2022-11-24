@@ -5,6 +5,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <QTimer>
 
 #include "url.h"
 #include "choosecard.h"
@@ -30,10 +31,16 @@ private:
     QString cardnum;
     choosecard *objectChooseCard;
     BankWindow *objectBankWindow;
+    void reset();
+    QTimer * ptimer;
+    int timer = 20;
 
 private slots:
     void on_btnLogin_clicked();
     void loginSlot (QNetworkReply *reply);
     void on_cardpin_returnPressed();
+    void on_cardnum_returnPressed();
+    void on_cardpin_textEdited(const QString &arg1);
+    void TimerSlot();
 };
 #endif // MAINWINDOW_H

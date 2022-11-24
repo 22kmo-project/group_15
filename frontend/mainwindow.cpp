@@ -6,9 +6,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->labelInfo->hide();
     ui->labelInfo->setWordWrap(true);
+
     this->setWindowTitle("Kirjautuminen");
+
+    //luodaan ajastin 20 sekunnin
+    ptimer = new QTimer(this);
+connect(ptimer, &QTimer::timeout, this, QOverload<>::of(&MainWindow::TimerSlot));
+    this->reset();
 }
 
 MainWindow::~MainWindow()
@@ -75,7 +80,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         }
         else {
             if(test==0){
-               // ui->cardnum->clear();
+                // ui->cardnum->clear();
                 ui->cardpin->clear();
                 ui->labelInfo->setText("Tunnus ja salasana eivät täsmää");
             }
@@ -83,17 +88,20 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             {ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");}
             else {
                 if(credit == true){
-                objectChooseCard=new choosecard(cardnum);
-                objectChooseCard->setWebToken(token);
-                objectChooseCard->show();
+                    objectChooseCard=new choosecard(cardnum);
+                    objectChooseCard->setWebToken(token);
+                    objectChooseCard->show();
+                    ui->cardnum->clear();
+                    ui->cardpin->clear();
+                    this->reset();
                 }
                 else{
                     objectBankWindow=new BankWindow(cardnum, false, token);
                     objectBankWindow->show();
+                    ui->cardnum->clear();
+                    ui->cardpin->clear();
+                    this->reset();
                 }
-
-
-                ui->labelInfo->setText(QString("Toimii ja luottokortti: %1").arg(credit));
 
             }
         }
@@ -107,5 +115,48 @@ void MainWindow::loginSlot(QNetworkReply *reply)
 void MainWindow::on_cardpin_returnPressed()
 {
     ui->btnLogin->click();
+
 }
 
+
+
+
+void MainWindow::on_cardnum_returnPressed()
+{
+    ui->label_2->show();
+    ui->cardpin->show();
+    ui->cardpin->setFocus();
+      ui->cardnum->setReadOnly(true);
+
+ptimer->start(timer*1000);
+}
+
+
+
+
+
+void MainWindow::on_cardpin_textEdited(const QString &arg1)
+{
+    if (ui->cardpin->isModified() == true) {
+        ui->btnLogin->show();}
+    ptimer->stop();
+    ptimer->start(timer*1000);
+}
+
+void MainWindow::reset(){
+    ui->btnLogin->hide();
+    ui->cardpin->hide();
+    ui->label_2->hide();
+    ui->cardnum->clear();
+    ui->cardpin->clear();
+    ui->cardnum->setReadOnly(false);
+    ui->labelInfo->setText("Syötä kortin numero ja paina Enter");
+
+    if(ptimer->isActive() == true){
+    ptimer->stop();}
+
+}
+void MainWindow::TimerSlot()
+{
+    this->reset();
+}

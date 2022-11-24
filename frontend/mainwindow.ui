@@ -86,6 +86,9 @@
     <property name="text">
      <string/>
     </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
    </widget>
    <widget class="QLineEdit" name="cardpin">
     <property name="geometry">
@@ -101,8 +104,17 @@
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="inputMask">
+     <string/>
+    </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QLabel" name="labelInfo">
@@ -120,7 +132,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Syötä kortin numero ja paina Enter</string>
     </property>
    </widget>
   </widget>

@@ -34,6 +34,6 @@ this->close();
 void choosecard::on_debitBtn_clicked()
 {    objectBankWindow=new BankWindow(myCard, false, webToken);
     objectBankWindow->show();
-this->close();
+this->~choosecard();
 }
 

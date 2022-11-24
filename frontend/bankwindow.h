@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 
+
 #include "url.h"
 
 namespace Ui {
@@ -31,6 +32,8 @@ public:
 private slots:
 
     void dataSlot (QNetworkReply *reply);
+
+    void on_exitBtn_clicked();
 
 private:
     Ui::BankWindow *ui;
