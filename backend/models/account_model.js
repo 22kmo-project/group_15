@@ -4,6 +4,7 @@ const account = {
   getById: function (id, callback) {
     return db.query("select * from account where idaccount=?", [id], callback);
   },
+
   getAll: function (callback) {
     return db.query("select * from account", callback);
   },
@@ -23,7 +24,17 @@ const account = {
   update: function (id, update_data, callback) {
     return db.query(
       "update grade set cardnum=?,balance=?,credit=? where idaccount=?",
-      [add_data.cardnum, add_data.balance, add_data.credit],
+      [update_data.cardnum, update_data.balance, update_data.credit],
+      callback
+    );
+  },
+  getAccount: function (cardnum, callback) {
+    return db.query("select*from account where cardnum=?", cardnum, callback);
+  },
+  withdraw: function (id, update_data, callback) {
+    return db.query(
+      "call transaction(?,?)",
+      [id, update_data.amount],
       callback
     );
   },

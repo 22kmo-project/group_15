@@ -44,14 +44,6 @@ const card = {
     );
   },
 
-  checkCredit: function (cardnum, callback) {
-    return db.query(
-      "select iscredit from card where cardnum=?",
-      cardnum,
-      callback
-    );
-  },
-
   checkLocked: function (cardnum, callback) {
     return db.query(
       "select pin_tries from card where cardnum=?",

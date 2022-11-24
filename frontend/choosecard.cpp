@@ -5,7 +5,10 @@ choosecard::choosecard(QString cardnum, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::choosecard)
 {
+    setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
+
     ui->setupUi(this);
+    this->setWindowTitle("Kortin valinta");
     myCard = cardnum;
 }
 
@@ -21,17 +24,16 @@ void choosecard::setWebToken(const QByteArray &newWebToken)
 
 void choosecard::on_creditBtn_clicked()
 {
-    objectBankWindow=new BankWindow(myCard, true);
-   // objectBankWindow->setWebToken(webToken);
+    objectBankWindow=new BankWindow(myCard, true, webToken);
     objectBankWindow->show();
+
 this->close();
 }
 
 
 void choosecard::on_debitBtn_clicked()
-{    objectBankWindow=new BankWindow(myCard, false);
-    //objectBankWindow->setWebToken(webToken);
+{    objectBankWindow=new BankWindow(myCard, false, webToken);
     objectBankWindow->show();
-this->close();
+this->~choosecard();
 }
 

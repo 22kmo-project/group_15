@@ -51,4 +51,26 @@ router.put("/:id", function (request, response) {
     }
   });
 });
+router.get("/account/:id", function (request, response) {
+  account.getAccount(request.params.id, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
+router.put("/withdraw/:id", function (request, response) {
+  account.withdraw(request.params.id, request.body, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      if (dbResult.length > 0) {
+        response.json("success");
+      } else {
+        response.json("fail");
+      }
+    }
+  });
+});
 module.exports = router;
