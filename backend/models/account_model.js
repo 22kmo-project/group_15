@@ -38,6 +38,9 @@ const account = {
       callback
     );
   },
+  balance: function (id, callback) {
+    return db.query("call balance(?)", [id], callback);
+  },
 };
 
 module.exports = account;
