@@ -73,4 +73,13 @@ router.put("/withdraw/:id", function (request, response) {
     }
   });
 });
+router.get("/balance/:id", function (request, response) {
+  account.balance(request.params.id, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult[0]);
+    }
+  });
+});
 module.exports = router;
