@@ -98,13 +98,19 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>414</width>
+       <height>53</height>
+      </size>
+     </property>
      <property name="font">
       <font>
        <pointsize>22</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>ASDFGH</string>
+      <string>Kiitos kun käytät ViKaSaKu Automaattia</string>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -128,7 +134,7 @@
       </font>
      </property>
      <property name="text">
-      <string>ASDFGH</string>
+      <string>Valitse Toiminto</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

@@ -5,6 +5,9 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include "history.h"
+#include "status.h"
+#include "raise.h"
 
 
 #include "url.h"
@@ -33,7 +36,13 @@ private slots:
 
     void dataSlot (QNetworkReply *reply);
 
-    void on_exitBtn_clicked();
+    void on_Btn_exit_clicked();
+
+    void on_Btn_nosta_clicked();
+
+    void on_Btn_saldo_clicked();
+
+    void on_Btn_loki_clicked();
 
 private:
     Ui::BankWindow *ui;

@@ -12,20 +12,29 @@ CONFIG += c++17
 SOURCES += \
     bankwindow.cpp \
     choosecard.cpp \
+    history.cpp \
     main.cpp \
     mainwindow.cpp \
+    raise.cpp \
+    status.cpp \
     url.cpp
 
 HEADERS += \
     bankwindow.h \
     choosecard.h \
+    history.h \
     mainwindow.h \
+    raise.h \
+    status.h \
     url.h
 
 FORMS += \
     bankwindow.ui \
     choosecard.ui \
-    mainwindow.ui
+    history.ui \
+    mainwindow.ui \
+    raise.ui \
+    status.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
