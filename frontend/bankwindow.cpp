@@ -77,7 +77,22 @@ bool BankWindow::getCredit(){
     return usingCredit;
 }
 
-void BankWindow::on_exitBtn_clicked()
+void BankWindow::on_Btn_nosta_clicked()
+{
+    this->close();
+}
+
+void BankWindow::on_Btn_saldo_clicked()
+{
+    this->close();
+}
+
+void BankWindow::on_Btn_loki_clicked()
+{
+    this->close();
+}
+
+void BankWindow::on_Btn_exit_clicked()
 {
     this->close();
 }
