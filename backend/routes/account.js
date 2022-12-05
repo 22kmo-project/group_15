@@ -84,4 +84,17 @@ router.get("/balance/:id", function (request, response) {
     }
   });
 });
+router.put("/transfer/:id", function (request, response) {
+  account.transfer(request.params.id, request.body, function (err, dbResult) {
+    if (err) {
+      response.send(err);
+    } else {
+      if (dbResult.length > 0) {
+        response.send(false);
+      } else {
+        response.send(true);
+      }
+    }
+  });
+});
 module.exports = router;

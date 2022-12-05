@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="1">
-    <widget class="QPushButton" name="saldoBtn">
+    <widget class="QPushButton" name="Btn_saldo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -33,7 +33,7 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QPushButton" name="lokiBtn">
+    <widget class="QPushButton" name="Btn_loki">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -126,7 +126,9 @@
     </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QPushButton" name="exitBtn">
+
+    <widget class="QPushButton" name="Btn_exit">
+
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -144,7 +146,9 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="nostaBtn">
+
+    <widget class="QPushButton" name="Btn_nosta">
+
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -162,7 +166,9 @@
     </widget>
    </item>
    <item row="6" column="0" colspan="2">
-    <widget class="QPushButton" name="pushButton">
+
+    <widget class="QPushButton" name="Btn_lah">
+
      <property name="text">
       <string>Lähetä rahaa tai maksa luottoa</string>
      </property>

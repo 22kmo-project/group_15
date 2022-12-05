@@ -41,6 +41,13 @@ const account = {
   balance: function (id, callback) {
     return db.query("call balance(?)", id, callback);
   },
+  transfer: function (id, update_data, callback) {
+    return db.query(
+      "call transfer(?,?,?)",
+      [id, update_data.receiver, update_data.amount],
+      callback
+    );
+  },
 };
 
 module.exports = account;

@@ -60,6 +60,7 @@ private:
     withdraw *objectWithdraw;
     history *objectHistory;
     status *objectStatus;
+    moneysend *objectMoneysend;
 
 
     QByteArray webToken;
@@ -70,7 +71,7 @@ private:
     bool getCredit();
     QNetworkReply *reply;
     QByteArray response_data;
-    bool boolhistory = 0, boolstatus = 0, boolwithdraw = 0;
+    bool boolhistory = 0, boolstatus = 0, boolwithdraw = 0, boolmoneysend = 0;
     void logOut();
     void killDialogs();
 
