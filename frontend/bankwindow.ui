@@ -7,33 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>436</width>
-    <height>327</height>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QPushButton" name="nostaBtn">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Nosta</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="1">
-    <widget class="QPushButton" name="saldoBtn">
+    <widget class="QPushButton" name="Btn_saldo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -51,7 +33,7 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QPushButton" name="lokiBtn">
+    <widget class="QPushButton" name="Btn_loki">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -68,25 +50,7 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <widget class="QPushButton" name="exitBtn">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Kirjaudu ulos</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0" colspan="2">
+   <item row="7" column="0" colspan="2">
     <widget class="QLabel" name="labelInfo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -104,6 +68,27 @@
      </property>
      <property name="scaledContents">
       <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="labelText1">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Valitse Toiminto</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -140,24 +125,46 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="labelText1">
+   <item row="5" column="1">
+    <widget class="QPushButton" name="Btn_exit">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="font">
       <font>
-       <pointsize>30</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>Valitse Toiminto</string>
+      <string>Kirjaudu ulos</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="Btn_nosta">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Nosta</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QPushButton" name="Btn_lah">
+     <property name="text">
+      <string>Lähetä rahaa tai maksa luottoa</string>
      </property>
     </widget>
    </item>

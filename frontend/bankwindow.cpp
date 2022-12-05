@@ -123,7 +123,7 @@ bool BankWindow::getCredit(){
 
 
 
-void BankWindow::on_nostaBtn_clicked()
+void BankWindow::on_Btn_nosta_clicked()
 {
     this->killDialogs();
     objectWithdraw=new withdraw(idaccount, webToken);
@@ -133,7 +133,7 @@ void BankWindow::on_nostaBtn_clicked()
 }
 
 
-void BankWindow::on_saldoBtn_clicked()
+void BankWindow::on_Btn_saldo_clicked()
 {
     this->killDialogs();
     objectStatus=new status(idaccount, webToken);
@@ -142,7 +142,7 @@ void BankWindow::on_saldoBtn_clicked()
 }
 
 
-void BankWindow::on_lokiBtn_clicked()
+void BankWindow::on_Btn_loki_clicked()
 {
     this->killDialogs();
     objectHistory=new history(idaccount, webToken);
@@ -150,26 +150,21 @@ void BankWindow::on_lokiBtn_clicked()
     boolhistory=true;
 }
 
+void BankWindow::on_Btn_lah_clicked()
+{
+    this->killDialogs();
+    objectMoneysend=new moneysend(idaccount, webToken);
+    objectMoneysend->show();
+    boolmoneysend=true;
+}
 
-void BankWindow::on_exitBtn_clicked()
+void BankWindow::on_Btn_exit_clicked()
 {
     this->logOut();
 
 }
 void BankWindow::logOut(){
-    if(boolhistory){
-    delete objectHistory;
-    objectHistory=nullptr;
-    boolhistory=false;
-    }
-    if(boolstatus){
-    delete objectStatus;
-    objectStatus=nullptr;
-    boolstatus=false;}
-    if(boolwithdraw){
-    delete objectWithdraw;
-    objectWithdraw=nullptr;
-    boolwithdraw=false;}
+    this->killDialogs();
     emit loggedout();
     this->close();
 }
@@ -187,5 +182,9 @@ void BankWindow::killDialogs(){
     delete objectWithdraw;
     objectWithdraw=nullptr;
     boolwithdraw=false;}
+    if(boolmoneysend){
+    delete objectMoneysend;
+    objectMoneysend=nullptr;
+    boolmoneysend=false;}
 }
 
