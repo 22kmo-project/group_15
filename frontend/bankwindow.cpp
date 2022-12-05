@@ -125,14 +125,17 @@ bool BankWindow::getCredit(){
 
 void BankWindow::on_nostaBtn_clicked()
 {
+    this->killDialogs();
     objectWithdraw=new withdraw(idaccount, webToken);
     objectWithdraw->show();
     boolwithdraw=true;
+
 }
 
 
 void BankWindow::on_saldoBtn_clicked()
 {
+    this->killDialogs();
     objectStatus=new status(idaccount, webToken);
     objectStatus->show();
     boolstatus=true;
@@ -141,6 +144,7 @@ void BankWindow::on_saldoBtn_clicked()
 
 void BankWindow::on_lokiBtn_clicked()
 {
+    this->killDialogs();
     objectHistory=new history(idaccount, webToken);
     objectHistory->show();
     boolhistory=true;
@@ -155,14 +159,33 @@ void BankWindow::on_exitBtn_clicked()
 void BankWindow::logOut(){
     if(boolhistory){
     delete objectHistory;
-    objectHistory=nullptr;}
+    objectHistory=nullptr;
+    boolhistory=false;
+    }
     if(boolstatus){
     delete objectStatus;
-    objectStatus=nullptr;}
+    objectStatus=nullptr;
+    boolstatus=false;}
     if(boolwithdraw){
     delete objectWithdraw;
-    objectWithdraw=nullptr;}
+    objectWithdraw=nullptr;
+    boolwithdraw=false;}
     emit loggedout();
     this->close();
+}
+void BankWindow::killDialogs(){
+    if(boolhistory){
+    delete objectHistory;
+    objectHistory=nullptr;
+    boolhistory=false;
+    }
+    if(boolstatus){
+    delete objectStatus;
+    objectStatus=nullptr;
+    boolstatus=false;}
+    if(boolwithdraw){
+    delete objectWithdraw;
+    objectWithdraw=nullptr;
+    boolwithdraw=false;}
 }
 

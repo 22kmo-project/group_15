@@ -69,6 +69,7 @@ private:
     QByteArray response_data;
     bool boolhistory = 0, boolstatus = 0, boolwithdraw = 0;
     void logOut();
+    void killDialogs();
 
 signals:
     void loggedout();
