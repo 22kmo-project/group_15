@@ -8,6 +8,7 @@
 #include "history.h"
 #include "status.h"
 #include "withdraw.h"
+#include "moneysend.h"
 
 
 #include "url.h"
@@ -38,13 +39,15 @@ private slots:
     void userSlot (QNetworkReply *reply);
 
 
-    void on_nostaBtn_clicked();
+    void on_Btn_nosta_clicked();
 
-    void on_saldoBtn_clicked();
+    void on_Btn_saldo_clicked();
 
-    void on_lokiBtn_clicked();
+    void on_Btn_loki_clicked();
 
-    void on_exitBtn_clicked();
+    void on_Btn_lah_clicked();
+
+    void on_Btn_exit_clicked();
 
 private:
     Ui::BankWindow *ui;
