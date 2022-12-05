@@ -123,7 +123,7 @@ bool BankWindow::getCredit(){
 
 
 
-void BankWindow::on_nostaBtn_clicked()
+void BankWindow::on_Btn_nosta_clicked()
 {
     this->killDialogs();
     objectWithdraw=new withdraw(idaccount, webToken);
@@ -133,7 +133,7 @@ void BankWindow::on_nostaBtn_clicked()
 }
 
 
-void BankWindow::on_saldoBtn_clicked()
+void BankWindow::on_Btn_saldo_clicked()
 {
     this->killDialogs();
     objectStatus=new status(idaccount, webToken);
@@ -142,7 +142,7 @@ void BankWindow::on_saldoBtn_clicked()
 }
 
 
-void BankWindow::on_lokiBtn_clicked()
+void BankWindow::on_Btn_loki_clicked()
 {
     this->killDialogs();
     objectHistory=new history(idaccount, webToken);
@@ -150,8 +150,15 @@ void BankWindow::on_lokiBtn_clicked()
     boolhistory=true;
 }
 
+void BankWindow::on_Btn_lah_clicked()
+{
+    this->killDialogs();
+    objectHistory=new moneysend(idaccount, webToken);
+    objectHistory->show();
+    boolhistory=true;
+}
 
-void BankWindow::on_exitBtn_clicked()
+void BankWindow::on_Btn_exit_clicked()
 {
     this->logOut();
 
