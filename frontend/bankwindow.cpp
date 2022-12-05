@@ -153,9 +153,11 @@ void BankWindow::on_Btn_loki_clicked()
 void BankWindow::on_Btn_lah_clicked()
 {
     this->killDialogs();
+
     objectMoneysend=new moneysend(idaccount, webToken);
     objectMoneysend->show();
     boolmoneysend=true;
+
 }
 
 void BankWindow::on_Btn_exit_clicked()
