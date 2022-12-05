@@ -51,4 +51,14 @@ router.put("/:id", function (request, response) {
     }
   });
 });
+router.get("/logs/:id", function (request, response) {
+  log.getLogs(request.params.id, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      var data = JSON.parse(JSON.stringify(dbResult[0]));
+      response.json(data);
+    }
+  });
+});
 module.exports = router;

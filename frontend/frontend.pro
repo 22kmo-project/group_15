@@ -11,32 +11,35 @@ CONFIG += c++17
 
 SOURCES += \
     bankwindow.cpp \
-    choosecard.cpp \
     history.cpp \
     main.cpp \
     mainwindow.cpp \
-    raise.cpp \
     status.cpp \
-    url.cpp
+    url.cpp \
+    withdraw.cpp \
+    withdrawdialog.cpp
 
 HEADERS += \
     bankwindow.h \
-    choosecard.h \
     history.h \
     mainwindow.h \
-    raise.h \
     status.h \
-    url.h
+    url.h \
+    withdraw.h \
+    withdrawdialog.h
 
 FORMS += \
     bankwindow.ui \
-    choosecard.ui \
     history.ui \
     mainwindow.ui \
-    raise.ui \
-    status.ui
+    status.ui \
+    withdraw.ui \
+    withdrawdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    filelist.qrc

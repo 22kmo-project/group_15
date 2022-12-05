@@ -63,12 +63,12 @@ router.get("/account/:id", function (request, response) {
 router.put("/withdraw/:id", function (request, response) {
   account.withdraw(request.params.id, request.body, function (err, dbResult) {
     if (err) {
-      response.json(err);
+      response.send(err);
     } else {
       if (dbResult.length > 0) {
-        response.json("success");
+        response.send(false);
       } else {
-        response.json("fail");
+        response.send(true);
       }
     }
   });
@@ -78,7 +78,9 @@ router.get("/balance/:id", function (request, response) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult[0]);
+      var data = JSON.parse(JSON.stringify(dbResult[0]));
+      console.log(data[0]);
+      response.json(data[0]);
     }
   });
 });
