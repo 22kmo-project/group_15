@@ -30,12 +30,14 @@ router.post("/", function (request, response) {
                     console.log("login successful and pin fails set to 0");
                     card.getById(cardnum, function (dbError, dbResult) {
                       let credit = dbResult[0].iscredit;
+                      let iduser = dbResult[0].iduser;
 
                       const token = generateAccessToken({ card: cardnum });
                       //palautetaan json objektina token ja tieto onko korttissa credit ominaisuus
                       response.json({
                         token: token,
                         credit: credit,
+                        iduser: iduser,
                       });
                     });
                   } else {

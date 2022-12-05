@@ -6,9 +6,9 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QTimer>
+#include <QRegExpValidator>
 
 #include "url.h"
-#include "choosecard.h"
 #include "bankwindow.h"
 
 QT_BEGIN_NAMESPACE
@@ -29,11 +29,13 @@ private:
     QNetworkReply *reply;
     QByteArray response_data;
     QString cardnum;
-    choosecard *objectChooseCard;
+    QString iduser;
     BankWindow *objectBankWindow;
     void reset();
-    QTimer * ptimer;
+    void logIn(bool credit);
+    QTimer * pinTimer;
     int timer = 20;
+    QByteArray token;
 
 private slots:
     void on_btnLogin_clicked();
@@ -42,5 +44,8 @@ private slots:
     void on_cardnum_returnPressed();
     void on_cardpin_textEdited(const QString &arg1);
     void TimerSlot();
+    void on_btnCredit_clicked();
+    void on_btnDebit_clicked();
+    void onLogout();
 };
 #endif // MAINWINDOW_H

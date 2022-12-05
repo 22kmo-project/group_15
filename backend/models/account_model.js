@@ -39,7 +39,7 @@ const account = {
     );
   },
   balance: function (id, callback) {
-    return db.query("call balance(?)", [id], callback);
+    return db.query("call balance(?)", id, callback);
   },
 };
 

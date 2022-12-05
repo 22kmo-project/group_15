@@ -25,6 +25,9 @@ const log = {
       callback
     );
   },
+  getLogs: function (idaccount, callback) {
+    return db.query("call event_log_100(?)", idaccount, callback);
+  },
 };
 
 module.exports = log;

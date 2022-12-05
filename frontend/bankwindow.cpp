@@ -1,7 +1,7 @@
 #include "bankwindow.h"
 #include "ui_bankwindow.h"
 
-BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken,QWidget *parent) :
+BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken, QString iduser, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BankWindow)
 {
@@ -9,7 +9,16 @@ BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken,QWidget 
      QWidget::showMaximized();
     this->setWebToken("Bearer "+ webToken);
     this->getAccount(cardnum);
+     this->iduser = iduser;
+     this->getUser();
     this->usingCredit= credit;
+     this->setWindowTitle("Valikko");
+
+     QPixmap bkgnd(":/graphics/graphics/graphics/pic.png"); //tässä luodaan taustagrafiikka
+     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+     QPalette palette;
+     palette.setBrush(QPalette::Window, bkgnd);
+     this->setPalette(palette);
 
 
 }
@@ -23,6 +32,7 @@ void BankWindow::setWebToken(const QByteArray &newWebToken)
 BankWindow::~BankWindow()
 {
     delete ui;
+
 }
 
 
@@ -53,7 +63,7 @@ void BankWindow::dataSlot(QNetworkReply *reply)
 
 
     qDebug()<<idaccount;
-    ui->labelInfo->setText(idaccount);
+
 
     reply->deleteLater();
     dataManager->deleteLater();
@@ -73,28 +83,86 @@ void BankWindow::getAccount(QString cardnum){
     reply = dataManager->get(request);
 }
 
+void BankWindow::userSlot(QNetworkReply *reply)
+{
+
+    response_data=reply->readAll();
+
+    qDebug()<<response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonObject json_obj = json_doc.object();
+
+
+    name = json_obj["fname"].toString() + " " + json_obj["lname"].toString();
+
+    ui->labelInfo->setText("Tilinumero: "+idaccount+ " \t\t Asiakas: " +name);
+
+    reply->deleteLater();
+    dataManager->deleteLater();
+}
+void BankWindow::getUser(){
+    qDebug()<<webToken;
+    QString site_url=url::getBaseUrl()+"/user/"+iduser;
+    qDebug()<<site_url;
+    QNetworkRequest request((site_url));
+    //WEBTOKEN ALKU
+    request.setRawHeader(QByteArray("Authorization"),(webToken));
+    //WEBTOKEN LOPPU
+    userManager = new QNetworkAccessManager(this);
+
+    connect(userManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(userSlot(QNetworkReply*)));
+
+    reply = userManager->get(request);
+}
+
 bool BankWindow::getCredit(){
     return usingCredit;
 }
 
-void BankWindow::on_Btn_nosta_clicked()
+
+
+
+
+void BankWindow::on_nostaBtn_clicked()
 {
-    this->close();
+    objectWithdraw=new withdraw(idaccount, webToken);
+    objectWithdraw->show();
+    boolwithdraw=true;
 }
 
-void BankWindow::on_Btn_saldo_clicked()
+
+void BankWindow::on_saldoBtn_clicked()
 {
-    this->close();
+    objectStatus=new status(idaccount, webToken);
+    objectStatus->show();
+    boolstatus=true;
 }
 
-void BankWindow::on_Btn_loki_clicked()
+
+void BankWindow::on_lokiBtn_clicked()
 {
-    this->close();
+    objectHistory=new history(idaccount, webToken);
+    objectHistory->show();
+    boolhistory=true;
 }
 
-void BankWindow::on_Btn_exit_clicked()
+
+void BankWindow::on_exitBtn_clicked()
 {
+    this->logOut();
+
+}
+void BankWindow::logOut(){
+    if(boolhistory){
+    delete objectHistory;
+    objectHistory=nullptr;}
+    if(boolstatus){
+    delete objectStatus;
+    objectStatus=nullptr;}
+    if(boolwithdraw){
+    delete objectWithdraw;
+    objectWithdraw=nullptr;}
+    emit loggedout();
     this->close();
 }
-
 
