@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include "url.h"
+#include <QTimer>
 
 namespace Ui {
 class history;
@@ -28,6 +29,7 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void timeCounter();
 private:
     Ui::history *ui;
 
@@ -41,6 +43,12 @@ private:
     int j;
     int max;
     QString idaccount;
+
+    int timerRounds=0;
+    QTimer *sessionTimer;
+
+signals:
+    void loggedout();
 
 };
 

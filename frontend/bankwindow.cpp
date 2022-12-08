@@ -148,6 +148,7 @@ void BankWindow::on_Btn_loki_clicked()
     objectHistory=new history(idaccount, webToken);
     objectHistory->show();
     boolhistory=true;
+    QObject::connect(objectHistory,&history::loggedout,this,&BankWindow::onLogout);
 }
 
 void BankWindow::on_Btn_lah_clicked()
@@ -190,3 +191,7 @@ void BankWindow::killDialogs(){
     boolmoneysend=false;}
 }
 
+void BankWindow::onLogout()
+{
+   this->logOut();
+}

@@ -78,6 +78,9 @@ private:
 signals:
     void loggedout();
 
+
+private slots:
+        void onLogout();
 };
 
 #endif // BANKWINDOW_H

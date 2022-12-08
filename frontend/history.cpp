@@ -1,6 +1,6 @@
 #include "history.h"
 #include "ui_history.h"
-
+#include <QDebug>
 history::history(QString idaccount, QByteArray webToken, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::history)
@@ -17,6 +17,10 @@ history::history(QString idaccount, QByteArray webToken, QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    QTimer *sessionTimer = new QTimer(this);
+    connect(sessionTimer,SIGNAL(timeout()),this,SLOT(timeCounter()));
+    sessionTimer->start(1000);
 }
 
 history::~history()
@@ -76,6 +80,19 @@ else {
     connect(dataManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(logSlot(QNetworkReply*)));
 
     reply = dataManager->get(request);
+ }
+
+ void history::timeCounter()
+ {
+     qDebug() <<timerRounds;
+     timerRounds++;
+
+     if(timerRounds==10){
+         this->close();        //tämä sulkee pop-up -ikkunat
+     }
+     if(timerRounds==30){
+         emit loggedout();        //tämä sulkee mainin
+     }
 }
 
 void history::on_pushButton_2_clicked()
