@@ -167,12 +167,14 @@ void BankWindow::on_Btn_loki_clicked()
 
 void BankWindow::on_Btn_lah_clicked()
 {
+
     this->resetTimer();
     if(!objectMoneysend){
         objectMoneysend=new moneysend(idaccount, webToken, this);
         ui->stackedWidget->addWidget(objectMoneysend);}
 
     ui->stackedWidget->setCurrentWidget(objectMoneysend);
+
 
 }
 

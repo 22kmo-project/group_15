@@ -2,12 +2,14 @@
 #define MONEYSEND_H
 
 #include <QDialog>
+
 #include <QRegExpValidator>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include "url.h"
 #include "withdrawdialog.h"
+
 
 namespace Ui {
 class moneysend;
@@ -18,6 +20,7 @@ class moneysend : public QDialog
     Q_OBJECT
 
 public:
+
     explicit moneysend(QString idaccount, QByteArray webToken,QWidget *parent = nullptr);
     ~moneysend();
 
@@ -41,6 +44,7 @@ private:
     withdrawDialog *objectDialogWindow;
 
     void sendMoney();
+
 };
 
 #endif // MONEYSEND_H

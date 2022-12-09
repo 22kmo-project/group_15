@@ -13,6 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+
   <property name="styleSheet">
    <string notr="true">#moneysend {border-image: url(:/graphics/graphics/graphics/lahetys.png)0 0 0 0 stretch stretch;}
 #BTN_send,#lineAmount,#lineReceiver{
