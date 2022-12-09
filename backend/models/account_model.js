@@ -23,7 +23,7 @@ const account = {
 
   update: function (id, update_data, callback) {
     return db.query(
-      "update grade set cardnum=?,balance=?,credit=? where idaccount=?",
+      "update account set cardnum=?,balance=?,credit=? where idaccount=?",
       [update_data.cardnum, update_data.balance, update_data.credit],
       callback
     );
@@ -45,6 +45,13 @@ const account = {
     return db.query(
       "call transfer(?,?,?)",
       [id, update_data.receiver, update_data.amount],
+      callback
+    );
+  },
+  deposit: function (id, update_data, callback) {
+    return db.query(
+      "update account set balance=balance+? where idaccount=?",
+      [update_data.amount, id],
       callback
     );
   },

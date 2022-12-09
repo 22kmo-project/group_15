@@ -14,12 +14,18 @@ BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken, QString
     this->usingCredit= credit;
      this->setWindowTitle("Valikko");
 
+     setAttribute(Qt::WA_DeleteOnClose); //olio poistetaan kun ikkuna suljetaan
+
      QPixmap bkgnd(":/graphics/graphics/graphics/pic.png"); //tässä luodaan taustagrafiikka
      bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
      QPalette palette;
      palette.setBrush(QPalette::Window, bkgnd);
      this->setPalette(palette);
 
+     QTimer *sessionTimer = new QTimer(this);
+     connect(sessionTimer,SIGNAL(timeout()),this,SLOT(timeCounter()));
+     sessionTimer->start(1000);
+     //ui->stackedWidget->hide();
 
 }
 
@@ -32,6 +38,7 @@ void BankWindow::setWebToken(const QByteArray &newWebToken)
 BankWindow::~BankWindow()
 {
     delete ui;
+
 
 }
 
@@ -63,7 +70,6 @@ void BankWindow::dataSlot(QNetworkReply *reply)
 
 
     qDebug()<<idaccount;
-
 
     reply->deleteLater();
     dataManager->deleteLater();
@@ -125,38 +131,52 @@ bool BankWindow::getCredit(){
 
 void BankWindow::on_Btn_nosta_clicked()
 {
-    this->killDialogs();
-    objectWithdraw=new withdraw(idaccount, webToken);
-    objectWithdraw->show();
-    boolwithdraw=true;
+    this->resetTimer();
+    if(!objectWithdraw){
+    objectWithdraw=new withdraw(idaccount, webToken,this);
+    ui->stackedWidget->addWidget(objectWithdraw);}
+    ui->stackedWidget->setCurrentWidget(objectWithdraw);
+
 
 }
 
 
 void BankWindow::on_Btn_saldo_clicked()
 {
-    this->killDialogs();
-    objectStatus=new status(idaccount, webToken);
-    objectStatus->show();
-    boolstatus=true;
+    this->resetTimer();
+    if(!objectStatus){
+        objectStatus=new status(idaccount, webToken, this);
+        ui->stackedWidget->addWidget(objectStatus);}
+
+
+    ui->stackedWidget->setCurrentWidget(objectStatus);
+
 }
 
 
 void BankWindow::on_Btn_loki_clicked()
 {
-    this->killDialogs();
-    objectHistory=new history(idaccount, webToken);
-    objectHistory->show();
-    boolhistory=true;
+    this->resetTimer();
+    if(!objectHistory){
+        objectHistory=new history(idaccount, webToken,this);
+        QObject::connect(objectHistory,&history::activity,this,&BankWindow::onActivity);
+        ui->stackedWidget->addWidget(objectHistory);}
+
+    ui->stackedWidget->setCurrentWidget(objectHistory);
 }
 
 void BankWindow::on_Btn_lah_clicked()
 {
-    this->killDialogs();
-    objectMoneysend=new moneysend(idaccount, webToken);
-    objectMoneysend->show();
-    boolmoneysend=true;
+    this->resetTimer();
+    if(!objectMoneysend){
+        objectMoneysend=new moneysend(idaccount, webToken, this);
+        ui->stackedWidget->addWidget(objectMoneysend);}
+
+    ui->stackedWidget->setCurrentWidget(objectMoneysend);
+
 }
+
+
 
 void BankWindow::on_Btn_exit_clicked()
 {
@@ -164,27 +184,29 @@ void BankWindow::on_Btn_exit_clicked()
 
 }
 void BankWindow::logOut(){
-    this->killDialogs();
     emit loggedout();
     this->close();
+
 }
-void BankWindow::killDialogs(){
-    if(boolhistory){
-    delete objectHistory;
-    objectHistory=nullptr;
-    boolhistory=false;
-    }
-    if(boolstatus){
-    delete objectStatus;
-    objectStatus=nullptr;
-    boolstatus=false;}
-    if(boolwithdraw){
-    delete objectWithdraw;
-    objectWithdraw=nullptr;
-    boolwithdraw=false;}
-    if(boolmoneysend){
-    delete objectMoneysend;
-    objectMoneysend=nullptr;
-    boolmoneysend=false;}
+
+
+void BankWindow::timeCounter()
+ {
+     qDebug()<<timerRounds;
+     timerRounds++;
+
+     if(timerRounds==10){
+         ui->stackedWidget->setCurrentIndex(0);//tämä sulkee pop-up -ikkunat
+     }
+     if(timerRounds==30){
+         this->logOut();        //tämä sulkee mainin
+     }
+}
+void BankWindow::onActivity()
+{
+   this->resetTimer();
+}
+void BankWindow::resetTimer(){
+    timerRounds=0;
 }
 

@@ -151,8 +151,11 @@ void MainWindow::on_btnDebit_clicked() { this->logIn(false); }
 void MainWindow::onLogout() { this->show(); }
 void MainWindow::logIn(bool credit) {
   objectBankWindow = new BankWindow(cardnum, credit, token, iduser);
+
+
   QObject::connect(objectBankWindow, &BankWindow::loggedout, this,
                    &MainWindow::onLogout);
+
   objectBankWindow->show();
   ui->cardnum->clear();
   ui->cardpin->clear();

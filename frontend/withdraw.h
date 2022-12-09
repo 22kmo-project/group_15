@@ -37,6 +37,8 @@ private slots:
 
     void on_suljeBTN_clicked();
 
+    void on_summa_textChanged(const QString &arg1);
+
 private:
     Ui::withdraw *ui;
     int amount;
