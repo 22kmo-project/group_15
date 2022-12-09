@@ -17,6 +17,8 @@ history::history(QString idaccount, QByteArray webToken, QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+    this->ui->logList->setAlternatingRowColors(true);
+
 }
 
 history::~history()
@@ -43,8 +45,7 @@ void history::logSlot(QNetworkReply *reply)
         } else {amount = QString::number(summa);}
 
 
-        item="Summa: " + amount +"€,\tPäivä: "+tempSplit[0] +", Aika:"+ tempSplit[1].split(".")[0] +", Tapahtuma: "+
-               json_obj["transaction_type"].toString();
+        item="Summa: " + amount +"€     \tTapahtuma: " + json_obj["transaction_type"].toString() + " \t Päivä: "+tempSplit[0] + "     \tAika:"+ tempSplit[1].split(".")[0];
         logitems<< item;
     }
 if (max >= 10){
@@ -80,6 +81,7 @@ else {
 
 void history::on_pushButton_2_clicked()
 {
+    emit activity();
     if(j < max - 10) {
         j = j+10;
         if (j > max - 10){j = max-10;}
@@ -92,6 +94,7 @@ void history::on_pushButton_2_clicked()
 
 void history::on_pushButton_3_clicked()
 {
+    emit activity();
     if(j > 0){
         j = j-10;
         if(j<0) {j=0;}

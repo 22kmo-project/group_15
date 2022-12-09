@@ -99,7 +99,6 @@ void withdraw::getMoney(int amount){
 
     qDebug()<<site_url;
     //WEBTOKEN ALKU
-    QByteArray myToken=webToken;
     request.setRawHeader(QByteArray("Authorization"),(this->webToken));
     //WEBTOKEN LOPPU
 

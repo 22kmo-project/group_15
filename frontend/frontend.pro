@@ -15,7 +15,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     moneysend.cpp \
-    paycredit.cpp \
     status.cpp \
     url.cpp \
     withdraw.cpp \
@@ -26,7 +25,6 @@ HEADERS += \
     history.h \
     mainwindow.h \
     moneysend.h \
-    paycredit.h \
     status.h \
     url.h \
     withdraw.h \
@@ -37,7 +35,6 @@ FORMS += \
     history.ui \
     mainwindow.ui \
     moneysend.ui \
-    paycredit.ui \
     status.ui \
     withdraw.ui \
     withdrawdialog.ui

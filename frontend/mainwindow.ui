@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
+    <width>418</width>
     <height>353</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="btnLogin">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>280</x>
       <y>80</y>
       <width>91</width>
       <height>61</height>
@@ -38,7 +38,7 @@
      <rect>
       <x>80</x>
       <y>30</y>
-      <width>111</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -72,8 +72,8 @@
    <widget class="QLineEdit" name="cardnum">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>30</y>
+      <x>180</x>
+      <y>31</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -93,8 +93,8 @@
    <widget class="QLineEdit" name="cardpin">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>90</y>
+      <x>180</x>
+      <y>91</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -138,7 +138,7 @@
    <widget class="QPushButton" name="btnCredit">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>180</x>
       <y>160</y>
       <width>91</width>
       <height>61</height>
@@ -163,7 +163,7 @@
    <widget class="QPushButton" name="btnDebit">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>280</x>
       <y>160</y>
       <width>91</width>
       <height>61</height>
@@ -191,8 +191,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>449</width>
-     <height>25</height>
+     <width>418</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
