@@ -19,6 +19,9 @@ public:
     explicit history(QString idaccount, QByteArray webToken, QWidget *parent = nullptr);
     ~history();
 
+signals:
+    void activity();
+
 private slots:
     void logSlot (QNetworkReply *reply);
 

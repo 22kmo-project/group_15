@@ -15,6 +15,8 @@ status::status(QString idaccount, QByteArray webToken, QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    this->ui->logList->setAlternatingRowColors(true);
 }
 
 status::~status()
@@ -31,7 +33,7 @@ void status::dataSlot(QNetworkReply *reply)
     QJsonObject json_obj = json_doc.object();
     double saldo = json_obj["balance"].toDouble();
 
-    this->ui->saldoLabel->setText(QString("%1 €").arg(saldo));
+    this->ui->label->setText(QString("Tilin saldo: %1 €").arg(saldo));
 
 
 

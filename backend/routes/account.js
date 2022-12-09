@@ -73,6 +73,15 @@ router.put("/withdraw/:id", function (request, response) {
     }
   });
 });
+router.put("/deposit/:id", function (request, response) {
+  account.deposit(request.params.id, request.body, function (err, dbResult) {
+    if (err) {
+      response.send(err);
+    } else {
+      response.send(true);
+    }
+  });
+});
 router.get("/balance/:id", function (request, response) {
   account.balance(request.params.id, function (err, dbResult) {
     if (err) {
@@ -92,6 +101,7 @@ router.put("/transfer/:id", function (request, response) {
       if (dbResult.length > 0) {
         response.send(false);
       } else {
+        console.log(dbResult);
         response.send(true);
       }
     }

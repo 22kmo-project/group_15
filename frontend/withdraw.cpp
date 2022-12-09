@@ -99,7 +99,6 @@ void withdraw::getMoney(int amount){
 
     qDebug()<<site_url;
     //WEBTOKEN ALKU
-    QByteArray myToken=webToken;
     request.setRawHeader(QByteArray("Authorization"),(this->webToken));
     //WEBTOKEN LOPPU
 
@@ -107,5 +106,11 @@ void withdraw::getMoney(int amount){
     connect(updateManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(dataSlot(QNetworkReply*)));
 
     reply = updateManager->put(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+void withdraw::on_summa_textChanged(const QString &arg1)
+{
+    this->ui->nostaBTN->setText(QString("NOSTA %1€").arg(this->ui->summa->text()));
 }
 
