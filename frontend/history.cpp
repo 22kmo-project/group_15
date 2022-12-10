@@ -100,7 +100,6 @@ void history::on_pushButton_3_clicked()
         if(j<0) {j=0;}
         this->getLog(idaccount,webToken);
         this->ui->logList->clear();
-        emit resetTimer();
     }
 }
 
