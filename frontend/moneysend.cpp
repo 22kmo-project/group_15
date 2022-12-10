@@ -1,7 +1,6 @@
 #include "moneysend.h"
 #include "ui_moneysend.h"
 
-
 moneysend::moneysend(QString idaccount, QByteArray webToken,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::moneysend)
@@ -13,14 +12,12 @@ moneysend::moneysend(QString idaccount, QByteArray webToken,QWidget *parent) :
         //this->ui->lineAmount->setValidator(rxv);
         this->idaccount = idaccount;
         this->webToken = webToken;
-
 }
 
 moneysend::~moneysend()
 {
     delete ui;
 }
-
 
 
 
@@ -72,6 +69,7 @@ void moneysend::on_BTN_close_clicked()
 {
     emit activity();
     this->close();
+    emit resetTimer();
 }
 
 
@@ -79,7 +77,9 @@ void moneysend::on_BTN_send_clicked()
 {
     emit activity();
 this->sendMoney();
+    emit resetTimer();
 }
+
 
 
 
@@ -95,4 +95,5 @@ void moneysend::on_lineReceiver_textChanged(const QString &arg1)
     emit activity();
 
 }
+
 

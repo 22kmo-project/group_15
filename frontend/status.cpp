@@ -59,6 +59,7 @@ void status::on_pushButton_clicked()
 {
     emit activity();
     this->close();
+    emit resetTimer();
 }
 void status::logSlot(QNetworkReply *reply)
 {

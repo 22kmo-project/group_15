@@ -24,6 +24,7 @@
 border-style:solid;
 border-width: 5px;
 border-color: rgb(45, 45, 45);
+
 margin: 2px 10px 2px 0px;}
 #Btn_loki:pressed,#Btn_nosta:pressed{
 border-style:solid;
@@ -42,6 +43,7 @@ border-width: 2px;
 border-color: rgb(45, 45, 45);
 padding: 2px 2px;}
 </string>
+
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -69,45 +71,38 @@ padding: 2px 2px;}
      </property>
     </spacer>
    </item>
-   <item row="14" column="1" colspan="3">
-    <widget class="QLabel" name="labelInfo">
+   <item row="2" column="3">
+    <widget class="QPushButton" name="Btn_saldo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="maximumSize">
+      <size>
+       <width>356</width>
+       <height>92</height>
+      </size>
+     </property>
      <property name="font">
       <font>
        <pointsize>20</pointsize>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/graphics/graphics/graphics/saldo.png)0 0 0 0;</string>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="flat">
+      <bool>false</bool>
      </property>
     </widget>
-   </item>
-   <item row="4" column="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="Btn_nosta">
@@ -165,87 +160,7 @@ padding: 2px 2px;}
      <widget class="QWidget" name="page_2"/>
     </widget>
    </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="Btn_lah">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>356</width>
-       <height>92</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/graphics/graphics/graphics/lah.png)0 0 0 0;
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="3">
-    <widget class="QPushButton" name="Btn_saldo">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>356</width>
-       <height>92</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/graphics/graphics/graphics/saldo.png)0 0 0 0;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="13" column="1" colspan="3" alignment="Qt::AlignHCenter">
+   <item row="14" column="1" colspan="3" alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="Btn_exit">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -276,7 +191,70 @@ padding: 2px 2px;}
      </property>
     </widget>
    </item>
+   <item row="15" column="1" colspan="3">
+    <widget class="QLabel" name="labelInfo">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Monofonto</family>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::RichText</enum>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+
+   <item row="13" column="1" colspan="3" alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="Btn_exit">
+
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>356</width>
+       <height>92</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/graphics/graphics/graphics/lah.png)0 0 0 0;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+
    <item row="4" column="1">
+
     <widget class="QPushButton" name="Btn_loki">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -305,6 +283,22 @@ padding: 2px 2px;}
       <string/>
      </property>
     </widget>
+   </item>
+   <item row="6" column="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

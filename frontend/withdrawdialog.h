@@ -28,6 +28,10 @@ private:
     Ui::withdrawDialog *ui;
 
 
+signals:
+    void loggedout();
+        void resetTimer();
+
 };
 
 #endif // WITHDRAWDIALOG_H

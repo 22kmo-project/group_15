@@ -6,8 +6,10 @@
    <rect>
     <x>0</x>
     <y>0</y>
+
     <width>1391</width>
     <height>434</height>
+
    </rect>
   </property>
   <property name="windowTitle">
@@ -170,7 +172,7 @@ padding: 6px 6px;
       </font>
      </property>
      <property name="text">
-      <string>Vastaanottajan tilinumero/credit tilinumero</string>
+      <string>Vastaanottajan tilinumero</string>
      </property>
     </widget>
    </item>

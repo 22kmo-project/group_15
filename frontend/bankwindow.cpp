@@ -168,16 +168,17 @@ void BankWindow::on_Btn_loki_clicked()
 
 void BankWindow::on_Btn_lah_clicked()
 {
-
     this->resetTimer();
 
     if(!objectMoneysend){
         objectMoneysend=new moneysend(idaccount, webToken, this);
+
         QObject::connect(objectMoneysend,&moneysend::activity,this,&BankWindow::onActivity);
         QObject::connect(objectMoneysend,&moneysend::withdrawal,this,&BankWindow::onWithdrawal);
         ui->stackedWidget->addWidget(objectMoneysend);}
 
     ui->stackedWidget->setCurrentWidget(objectMoneysend);
+
 }
 
 
@@ -210,6 +211,7 @@ void BankWindow::onActivity() //tähän yhdistetään signaalit kaikkien olioide
 {
    this->resetTimer();
 }
+
 void BankWindow::onWithdrawal(QString item) //tähän yhdistetään signaalit kaikkien olioiden napeista
 {
    qDebug()<<item;
@@ -222,4 +224,5 @@ void BankWindow::onWithdrawal(QString item) //tähän yhdistetään signaalit ka
 void BankWindow::resetTimer(){
     timerRounds=0;
 }
+
 
