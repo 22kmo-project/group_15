@@ -24,12 +24,9 @@ withdrawDialog::~withdrawDialog()
 
 void withdrawDialog::on_pushButton_clicked()
 {
-
     emit activity();
     this->close();
-
 }
-
 
 
 void withdrawDialog::setText(QString text){

@@ -21,8 +21,6 @@ public:
 
 signals:
     void activity();
-    void loggedout();
-            void resetTimer();
 
 private slots:
     void logSlot (QNetworkReply *reply);

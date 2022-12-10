@@ -39,8 +39,7 @@ private:
     QNetworkAccessManager *logManager;
     QStringList logitems;
 
-signals:
-        void resetTimer();
+
 };
 
 #endif // STATUS_H
