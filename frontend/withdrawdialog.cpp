@@ -15,9 +15,6 @@ withdrawDialog::withdrawDialog(QWidget *parent) :
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    closeTimer = new QTimer(this);
-    connect(closeTimer, &QTimer::timeout, this, QOverload<>::of(&withdrawDialog::TimerSlot));
-    closeTimer->start(1000);
 }
 
 withdrawDialog::~withdrawDialog()
@@ -27,29 +24,14 @@ withdrawDialog::~withdrawDialog()
 
 void withdrawDialog::on_pushButton_clicked()
 {
-    this->closeWindow();
-            emit resetTimer();
-}
 
-void withdrawDialog::TimerSlot()
-{
-    if(timertime > 0){
-    this->ui->pushButton->setText(QString("Sulje (%1)").arg(timertime));
-    timertime = timertime - 1;
-    }
-    else {
-    closeTimer = nullptr;
-    this->closeWindow();}
-}
-
-void withdrawDialog::closeWindow(){
+    emit activity();
     this->close();
-            emit resetTimer();
+
 }
+
+
+
 void withdrawDialog::setText(QString text){
     this->ui->label->setText(text);
 }
-void withdrawDialog::setTimer(int time){
-    timertime = time-1;
-}
-

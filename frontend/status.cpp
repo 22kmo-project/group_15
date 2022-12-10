@@ -57,6 +57,7 @@ void status::getBalance(QString idaccount, QByteArray webToken){
 
 void status::on_pushButton_clicked()
 {
+    emit activity();
     this->close();
     emit resetTimer();
 }

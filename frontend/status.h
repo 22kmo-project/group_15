@@ -18,6 +18,8 @@ class status : public QDialog
 public:
     explicit status(QString idaccount, QByteArray webToken, QWidget *parent = nullptr);
     ~status();
+signals:
+    void activity();
 
 private slots:
     void logSlot (QNetworkReply *reply);

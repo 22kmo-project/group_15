@@ -17,17 +17,16 @@ public:
     ~withdrawDialog();
 
         void setText(QString text);
-        void setTimer(int time);
+signals:
+    void activity();
 
 private slots:
     void on_pushButton_clicked();
-    void TimerSlot();
+
 
 private:
     Ui::withdrawDialog *ui;
-    void closeWindow();
-    QTimer * closeTimer;
-    int timertime;
+
 
 signals:
     void loggedout();

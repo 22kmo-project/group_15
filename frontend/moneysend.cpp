@@ -5,12 +5,11 @@ moneysend::moneysend(QString idaccount, QByteArray webToken,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::moneysend)
 {
-    objectDialogWindow=new withdrawDialog();
         setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
         ui->setupUi(this);
         QRegExpValidator* rxv = new QRegExpValidator(QRegExp("\\d*"), this);
         this->ui->lineReceiver->setValidator(rxv);
-        this->ui->lineAmount->setValidator(rxv);
+        //this->ui->lineAmount->setValidator(rxv);
         this->idaccount = idaccount;
         this->webToken = webToken;
 }
@@ -30,13 +29,11 @@ void moneysend::dataSlot(QNetworkReply *reply)
     int test=QString::compare(response_data,"false");
     qDebug()<< test;
     if(test==0){
-        siirto = "siirto onnistui";;
+        siirto = "SIIRTO ONNISTUI";;
     }
-    else {siirto = "siirto epäonnistui";}
+    else {siirto = "SIIRTO EPÄONNISTUI";}
 
-    objectDialogWindow->setText(siirto);
-    objectDialogWindow->setTimer(10);
-    objectDialogWindow->show();
+    emit withdrawal(siirto);
     this->close();
 
     reply->deleteLater();
@@ -45,7 +42,7 @@ void moneysend::dataSlot(QNetworkReply *reply)
 
 void moneysend::sendMoney() {
     QString receiver = ui->lineReceiver->text();
-    QString amount = ui->lineAmount->text();
+    QString amount = QString::number(ui->lineAmount->text().toInt());
 
     QJsonObject jsonObj;
     jsonObj.insert("receiver", receiver);
@@ -70,6 +67,7 @@ void moneysend::sendMoney() {
 
 void moneysend::on_BTN_close_clicked()
 {
+    emit activity();
     this->close();
     emit resetTimer();
 }
@@ -77,7 +75,25 @@ void moneysend::on_BTN_close_clicked()
 
 void moneysend::on_BTN_send_clicked()
 {
+    emit activity();
 this->sendMoney();
     emit resetTimer();
 }
+
+
+
+
+void moneysend::on_lineAmount_textChanged(const QString &arg1)
+{
+    emit activity();
+    this->ui->lineAmount->setText(QString("%1€").arg(arg1));
+}
+
+
+void moneysend::on_lineReceiver_textChanged(const QString &arg1)
+{
+    emit activity();
+
+}
+
 

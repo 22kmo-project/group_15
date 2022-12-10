@@ -8,9 +8,9 @@ BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken, QString
     ui->setupUi(this);
      QWidget::showMaximized();
     this->setWebToken("Bearer "+ webToken);
-    this->getAccount(cardnum);
+    this->getAccount(cardnum); //haetaan käytettävä tilinumero kortin perusteella
      this->iduser = iduser;
-     this->getUser();
+     this->getUser(); //haetaan asiakkaan nimi
     this->usingCredit= credit;
      this->setWindowTitle("Valikko");
 
@@ -25,7 +25,6 @@ BankWindow::BankWindow(QString cardnum,bool credit, QByteArray webToken, QString
      QTimer *sessionTimer = new QTimer(this);
      connect(sessionTimer,SIGNAL(timeout()),this,SLOT(timeCounter()));
      sessionTimer->start(1000);
-     //ui->stackedWidget->hide();
 
 }
 
@@ -132,31 +131,33 @@ bool BankWindow::getCredit(){
 void BankWindow::on_Btn_nosta_clicked()
 {
     this->resetTimer();
-    if(!objectWithdraw){
+    if(!objectWithdraw){//jos oliota ei ole vielä luotu, luodaan se napin painalluksella
     objectWithdraw=new withdraw(idaccount, webToken,this);
-    ui->stackedWidget->addWidget(objectWithdraw);}
-    ui->stackedWidget->setCurrentWidget(objectWithdraw);
+    QObject::connect(objectWithdraw,&withdraw::activity,this,&BankWindow::onActivity); //yhdistetään olion activity signal onActivity slottiin
+    QObject::connect(objectWithdraw,&withdraw::withdrawal,this,&BankWindow::onWithdrawal);//yhdistetään withdraw signaali onwithdrawal slottiin
+    ui->stackedWidget->addWidget(objectWithdraw);} //lisätään olio stackedwidgetiin
 
-
+    ui->stackedWidget->setCurrentWidget(objectWithdraw); //näytetään tämä ikkuna stackedwidgetissä
 }
 
 
 void BankWindow::on_Btn_saldo_clicked()
 {
     this->resetTimer();
+
     if(!objectStatus){
         objectStatus=new status(idaccount, webToken, this);
+        QObject::connect(objectStatus,&status::activity,this,&BankWindow::onActivity);
         ui->stackedWidget->addWidget(objectStatus);}
 
-
     ui->stackedWidget->setCurrentWidget(objectStatus);
-
 }
 
 
 void BankWindow::on_Btn_loki_clicked()
 {
     this->resetTimer();
+
     if(!objectHistory){
         objectHistory=new history(idaccount, webToken,this);
         QObject::connect(objectHistory,&history::activity,this,&BankWindow::onActivity);
@@ -168,9 +169,12 @@ void BankWindow::on_Btn_loki_clicked()
 void BankWindow::on_Btn_lah_clicked()
 {
     this->resetTimer();
+
     if(!objectMoneysend){
         objectMoneysend=new moneysend(idaccount, webToken, this);
-        QObject::connect(objectMoneysend,&moneysend::loggedout,this,&BankWindow::onActivity);
+
+        QObject::connect(objectMoneysend,&moneysend::activity,this,&BankWindow::onActivity);
+        QObject::connect(objectMoneysend,&moneysend::withdrawal,this,&BankWindow::onWithdrawal);
         ui->stackedWidget->addWidget(objectMoneysend);}
 
     ui->stackedWidget->setCurrentWidget(objectMoneysend);
@@ -185,15 +189,15 @@ void BankWindow::on_Btn_exit_clicked()
 
 }
 void BankWindow::logOut(){
-    emit loggedout();
+    emit loggedout(); //kirjautumis ikkunalle signaali että näyttää itsensä
     this->close();
 
 }
 
 
-void BankWindow::timeCounter()
+void BankWindow::timeCounter() //ajastin suorittaa tämän 1sekunnin välein
  {
-     qDebug()<<timerRounds;
+     //qDebug()<<timerRounds;
      timerRounds++;
 
      if(timerRounds==10){
@@ -203,12 +207,22 @@ void BankWindow::timeCounter()
          this->logOut();        //tämä sulkee mainin
      }
 }
-void BankWindow::onActivity()
+void BankWindow::onActivity() //tähän yhdistetään signaalit kaikkien olioiden napeista
 {
    this->resetTimer();
 }
-//void BankWindow::resetTimer(){
-  //  timerRounds=0;
 
-//}
+void BankWindow::onWithdrawal(QString item) //tähän yhdistetään signaalit kaikkien olioiden napeista
+{
+   qDebug()<<item;
+   if(!objectDialogWindow){
+       objectDialogWindow=new withdrawDialog(this);
+       ui->stackedWidget->addWidget(objectDialogWindow);}
+   objectDialogWindow->setText(item);
+   ui->stackedWidget->setCurrentWidget(objectDialogWindow);
+}
+void BankWindow::resetTimer(){
+    timerRounds=0;
+}
+
 

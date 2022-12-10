@@ -5,7 +5,7 @@
 withdraw::withdraw(QString idaccount, QByteArray webToken, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::withdraw)
-{   objectDialogWindow=new withdrawDialog();
+{
     setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
     ui->setupUi(this);
     QRegExpValidator* rxv = new QRegExpValidator(QRegExp("\\d*"), this);
@@ -81,13 +81,13 @@ void withdraw::dataSlot(QNetworkReply *reply)
     int test=QString::compare(response_data,"false");
     qDebug()<< test;
     if(test==0){
-        nosto = "nosto onnistui";;
+        nosto = "NOSTO ONNISTUI";;
     }
-    else {nosto = "nosto epäonnistui";}
+    else {nosto = "NOSTO EPÄONNISTUI";}
+    emit activity();
 
-    objectDialogWindow->setText(nosto);
-    objectDialogWindow->setTimer(10);
-    objectDialogWindow->show();
+    emit withdrawal(nosto);
+
     this->close();
 
     reply->deleteLater();
@@ -112,5 +112,13 @@ void withdraw::getMoney(int amount){
     connect(updateManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(dataSlot(QNetworkReply*)));
 
     reply = updateManager->put(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+
+void withdraw::on_summa_textChanged(const QString &arg1)
+{
+    emit activity();
+    this->ui->nostaBTN->setText(QString("NOSTA %1€").arg(this->ui->summa->text()));
 }
 
