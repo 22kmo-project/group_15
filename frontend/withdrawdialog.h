@@ -29,6 +29,10 @@ private:
     QTimer * closeTimer;
     int timertime;
 
+signals:
+    void loggedout();
+        void resetTimer();
+
 };
 
 #endif // WITHDRAWDIALOG_H

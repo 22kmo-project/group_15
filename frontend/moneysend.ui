@@ -6,14 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>992</width>
-    <height>434</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-
   <property name="styleSheet">
    <string notr="true">#moneysend {border-image: url(:/graphics/graphics/graphics/lahetys.png)0 0 0 0 stretch stretch;}
 #BTN_send,#lineAmount,#lineReceiver{
@@ -171,7 +170,7 @@ padding: 6px 6px;
       </font>
      </property>
      <property name="text">
-      <string>Vastaanottajan tilinumero/credit tilinumero</string>
+      <string>Vastaanottajan tilinumero</string>
      </property>
     </widget>
    </item>

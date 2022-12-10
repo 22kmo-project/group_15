@@ -28,6 +28,7 @@ withdrawDialog::~withdrawDialog()
 void withdrawDialog::on_pushButton_clicked()
 {
     this->closeWindow();
+            emit resetTimer();
 }
 
 void withdrawDialog::TimerSlot()
@@ -43,6 +44,7 @@ void withdrawDialog::TimerSlot()
 
 void withdrawDialog::closeWindow(){
     this->close();
+            emit resetTimer();
 }
 void withdrawDialog::setText(QString text){
     this->ui->label->setText(text);

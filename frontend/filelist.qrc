@@ -3,7 +3,6 @@
         <file>graphics/pic.png</file>
         <file>graphics/mqD6skE.png</file>
         <file>graphics/image.png</file>
-        <file>graphics/tausta.png</file>
         <file>graphics/lah.png</file>
         <file>graphics/saldo.png</file>
         <file>graphics/history.png</file>
@@ -13,6 +12,7 @@
         <file>graphics/log.png</file>
         <file>graphics/withdraw.png</file>
         <file>graphics/nosto.png</file>
+        <file>graphics/tausta.png</file>
     </qresource>
     <qresource prefix="/">
         <file>graphics/mqD6skE.png</file>

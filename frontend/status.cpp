@@ -58,6 +58,7 @@ void status::getBalance(QString idaccount, QByteArray webToken){
 void status::on_pushButton_clicked()
 {
     this->close();
+    emit resetTimer();
 }
 void status::logSlot(QNetworkReply *reply)
 {
