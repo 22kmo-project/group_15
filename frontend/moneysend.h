@@ -24,12 +24,20 @@ public:
     explicit moneysend(QString idaccount, QByteArray webToken,QWidget *parent = nullptr);
     ~moneysend();
 
+signals:
+    void withdrawal(QString nosto);
+    void activity();
+
 private slots:
     void dataSlot (QNetworkReply *reply);
 
     void on_BTN_close_clicked();
 
     void on_BTN_send_clicked();
+
+    void on_lineAmount_textChanged(const QString &arg1);
+
+    void on_lineReceiver_textChanged(const QString &arg1);
 
 private:
     Ui::moneysend *ui;

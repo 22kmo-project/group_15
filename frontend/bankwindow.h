@@ -10,7 +10,7 @@
 #include "status.h"
 #include "withdraw.h"
 #include "moneysend.h"
-
+#include "withdrawdialog.h"
 
 #include "url.h"
 
@@ -30,6 +30,7 @@ public:
 
     void setWebToken(const QByteArray &newWebToken);
     void onActivity();
+    void onWithdrawal(QString item);
 
     ~BankWindow();
 
@@ -64,6 +65,7 @@ private:
     history *objectHistory = nullptr;
     status *objectStatus = nullptr;
     moneysend *objectMoneysend = nullptr;
+    withdrawDialog *objectDialogWindow = nullptr;
 
     QTimer *sessionTimer;
 

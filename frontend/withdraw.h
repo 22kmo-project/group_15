@@ -20,6 +20,9 @@ class withdraw : public QDialog
 public:
     explicit withdraw(QString idaccount, QByteArray webToken,QWidget *parent = nullptr);
     ~withdraw();
+signals:
+    void withdrawal(QString nosto);
+    void activity();
 
 private slots:
 

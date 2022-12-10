@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   this->setWindowTitle("Kirjautuminen");
 
-  // luodaan ajastin 20 sekunnin
+  // luodaan ajastin olio ja yhdistetään timerslotiin
   pinTimer = new QTimer(this);
   connect(pinTimer, &QTimer::timeout, this,
           QOverload<>::of(&MainWindow::TimerSlot));
@@ -89,13 +89,12 @@ void MainWindow::loginSlot(QNetworkReply *reply) {
       } else if (test2 == 0) {
         ui->labelInfo->setText("Kortti on lukittu, liian monta yritystä");
       } else {
-        if (credit == true) {
+        if (credit == true) {//jos kortilla on credit ominaisuus näytetään tilin valinta napit
           ui->btnCredit->show();
           ui->btnDebit->show();
           ui->btnLogin->setDisabled(true);
           ui->labelInfo->setText("Valitse Credit tai Debit");
-          // this->reset();
-          // this->hide();
+
         } else {
           this->logIn(false);
         }
@@ -116,7 +115,7 @@ void MainWindow::on_cardnum_returnPressed() {
   ui->cardpin->setFocus();
   ui->cardnum->setReadOnly(true);
   ui->labelInfo->setText("Syötä pin koodi");
-  pinTimer->start(timer * 1000);
+  pinTimer->start(timer * 1000);  //käynnistetään ajastin 20sekuntia pin syöttöön
 }
 
 void MainWindow::on_cardpin_textEdited(const QString &arg1) {
@@ -128,6 +127,7 @@ void MainWindow::on_cardpin_textEdited(const QString &arg1) {
 }
 
 void MainWindow::reset() {
+  //resetoidaan kirjautumisikkuna
   ui->btnLogin->hide();
   ui->cardpin->hide();
   ui->btnCredit->hide();
@@ -149,10 +149,12 @@ void MainWindow::on_btnCredit_clicked() { this->logIn(true); }
 
 void MainWindow::on_btnDebit_clicked() { this->logIn(false); }
 void MainWindow::onLogout() { this->show(); }
+
 void MainWindow::logIn(bool credit) {
-  objectBankWindow = new BankWindow(cardnum, credit, token, iduser);
 
+  objectBankWindow = new BankWindow(cardnum, credit, token, iduser,this);
 
+  //yhdistetään signaali onLogout slottiin, jotta ikkuna saadaan näkyviin kirjautumisen jälkeen
   QObject::connect(objectBankWindow, &BankWindow::loggedout, this,
                    &MainWindow::onLogout);
 

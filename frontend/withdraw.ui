@@ -29,7 +29,7 @@ background-color: rgb(0, 0, 0);
 color: rgb(14, 136, 37);
 border-style:solid;
 border-width: 2px;
-border-color: rgb(45, 45, 45);
+border-color: rgb(14, 136, 37);
 border-radius: 10px;
 padding: 2px 2px;
 }
@@ -38,7 +38,7 @@ background-color: rgb(0, 0, 0);
 color: rgb(14, 136, 37);
 border-style:solid;
 border-width: 5px;
-border-color: rgb(45, 45, 45);
+border-color: rgb(14, 136, 37);
 border-radius: 10px;
 padding: 6px 6px;
 }</string>
@@ -264,7 +264,7 @@ padding: 6px 6px;
      <property name="styleSheet">
       <string notr="true">border-style:solid;
 border-width: 2px;
-border-color: rgb(45, 45, 45);
+border-color: rgb(14, 136, 37);
 border-radius: 10px;
 padding: 2px 2px;
 color: rgb(14, 136, 37);
