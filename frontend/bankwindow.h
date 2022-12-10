@@ -50,6 +50,8 @@ private slots:
 
     void on_Btn_exit_clicked();
 
+    void resetTimer();
+
 
 private:
     Ui::BankWindow *ui;
@@ -77,7 +79,7 @@ private:
     QByteArray response_data;
     bool boolhistory = 0, boolstatus = 0, boolwithdraw = 0, boolmoneysend = 0, booldeposit = 0;
     void logOut();
-    void resetTimer();
+
 
 signals:
     void loggedout();

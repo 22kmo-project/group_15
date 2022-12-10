@@ -30,6 +30,7 @@ void withdraw::on_btn20_clicked()
 {
     amount = 20;
     this->getMoney(amount);
+        emit resetTimer();
 }
 
 
@@ -37,6 +38,7 @@ void withdraw::on_btn40_clicked()
 {
     amount = 40;
     this->getMoney(amount);
+        emit resetTimer();
 }
 
 
@@ -44,6 +46,7 @@ void withdraw::on_btn50_clicked()
 {
     amount = 50;
     this->getMoney(amount);
+        emit resetTimer();
 }
 
 
@@ -51,6 +54,7 @@ void withdraw::on_btn100_clicked()
 {
     amount = 100;
     this->getMoney(amount);
+        emit resetTimer();
 }
 
 
@@ -59,12 +63,14 @@ void withdraw::on_nostaBTN_clicked()
     QString temp = this->ui->summa->text();
     amount= temp.toInt();
     this->getMoney(amount);
+        emit resetTimer();
 }
 
 
 void withdraw::on_suljeBTN_clicked()
 {
     this->close();
+        emit resetTimer();
 }
 
 void withdraw::dataSlot(QNetworkReply *reply)
@@ -106,11 +112,5 @@ void withdraw::getMoney(int amount){
     connect(updateManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(dataSlot(QNetworkReply*)));
 
     reply = updateManager->put(request, QJsonDocument(jsonObj).toJson());
-}
-
-
-void withdraw::on_summa_textChanged(const QString &arg1)
-{
-    this->ui->nostaBTN->setText(QString("NOSTA %1€").arg(this->ui->summa->text()));
 }
 

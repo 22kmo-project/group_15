@@ -37,8 +37,6 @@ private slots:
 
     void on_suljeBTN_clicked();
 
-    void on_summa_textChanged(const QString &arg1);
-
 private:
     Ui::withdraw *ui;
     int amount;
@@ -53,6 +51,10 @@ private:
     withdrawDialog *objectDialogWindow;
 
     void getMoney(int amount);
+
+signals:
+    void loggedout();
+        void resetTimer();
 };
 
 #endif // WITHDRAW_H

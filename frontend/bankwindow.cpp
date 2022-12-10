@@ -167,14 +167,13 @@ void BankWindow::on_Btn_loki_clicked()
 
 void BankWindow::on_Btn_lah_clicked()
 {
-
     this->resetTimer();
     if(!objectMoneysend){
         objectMoneysend=new moneysend(idaccount, webToken, this);
+        QObject::connect(objectMoneysend,&moneysend::loggedout,this,&BankWindow::onActivity);
         ui->stackedWidget->addWidget(objectMoneysend);}
 
     ui->stackedWidget->setCurrentWidget(objectMoneysend);
-
 
 }
 
@@ -208,7 +207,8 @@ void BankWindow::onActivity()
 {
    this->resetTimer();
 }
-void BankWindow::resetTimer(){
-    timerRounds=0;
-}
+//void BankWindow::resetTimer(){
+  //  timerRounds=0;
+
+//}
 
