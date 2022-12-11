@@ -23,7 +23,7 @@ QListView::item:alternate {
 	background-color: rgb(45, 45, 45);
 }
 #pushButton, #pushButton_2, #pushButton_3,#logList {
-
+ font-family:monofonto;
 border-style:solid;
 border-width: 2px;
 border-color: rgb(14, 136, 37);
@@ -45,6 +45,7 @@ padding: 6px 6px;
     <widget class="QListWidget" name="logList">
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>20</pointsize>
       </font>
      </property>
@@ -114,6 +115,7 @@ color: rgb(14, 136, 37);</string>
      </property>
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>20</pointsize>
        <bold>true</bold>
       </font>
@@ -172,6 +174,7 @@ color: rgb(14, 136, 37);</string>
      </property>
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>20</pointsize>
        <bold>true</bold>
       </font>

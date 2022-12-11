@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QTimer>
 #include <QRegExpValidator>
+#include <QKeyEvent>
 
 #include "url.h"
 #include "bankwindow.h"
@@ -47,5 +48,6 @@ private slots:
     void on_btnCredit_clicked();
     void on_btnDebit_clicked();
     void onLogout();
+    void keyPressEvent( QKeyEvent * event );
 };
 #endif // MAINWINDOW_H
