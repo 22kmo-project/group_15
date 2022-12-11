@@ -45,7 +45,7 @@ void history::logSlot(QNetworkReply *reply)
         } else {amount = QString::number(summa);}
 
 
-        item="Summa: " + amount +"€     \tTapahtuma: " + json_obj["transaction_type"].toString() + " \t Päivä: "+tempSplit[0] + "     \tAika:"+ tempSplit[1].split(".")[0];
+        item="Summa: " + amount +"€   \t\tTapahtuma: " + json_obj["transaction_type"].toString() + " \t Päivä: "+tempSplit[0] + "     \tAika:"+ tempSplit[1].split(".")[0];
         logitems<< item;
     }
 if (max >= 10){

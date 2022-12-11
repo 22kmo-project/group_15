@@ -218,6 +218,7 @@ void BankWindow::onWithdrawal(QString item) //tähän yhdistetään signaalit ka
        ui->stackedWidget->addWidget(objectDialogWindow);}
    objectDialogWindow->setText(item);
    ui->stackedWidget->setCurrentWidget(objectDialogWindow);
+   objectWithdraw = nullptr;
 }
 void BankWindow::resetTimer(){
     timerRounds=0;
