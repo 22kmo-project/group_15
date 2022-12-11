@@ -17,12 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
   this->ui->cardnum->setValidator(rxv);
   this->ui->cardpin->setValidator(rxv);
 
-  QPixmap bkgnd(
-      ":/graphics/graphics/graphics/pic.png"); // tässä luodaan taustagrafiikka
-  bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-  QPalette palette;
-  palette.setBrush(QPalette::Window, bkgnd);
-  this->setPalette(palette);
+
+//  QPixmap bkgnd(
+//      ":/graphics/graphics/graphics/pic.png"); // tässä luodaan taustagrafiikka
+//  bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+//  QPalette palette;
+//  palette.setBrush(QPalette::Window, bkgnd);
+//  this->setPalette(palette);
 }
 
 MainWindow::~MainWindow() {
@@ -114,7 +115,7 @@ void MainWindow::on_cardnum_returnPressed() {
   ui->btnLogin->setDisabled(false);
   ui->cardpin->setFocus();
   ui->cardnum->setReadOnly(true);
-  ui->labelInfo->setText("Syötä pin koodi");
+  ui->labelInfo->setText("Syötä pin koodi ja paina Enter tai paina Esc");
   pinTimer->start(timer * 1000);  //käynnistetään ajastin 20sekuntia pin syöttöön
 }
 
@@ -164,4 +165,11 @@ void MainWindow::logIn(bool credit) {
 
   this->reset();
   this->hide();
+}
+void MainWindow::keyPressEvent( QKeyEvent * event )
+{
+    if( event->key() == Qt::Key_Escape )
+    {
+        this->reset();
+    }
 }

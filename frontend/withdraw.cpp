@@ -12,7 +12,7 @@ withdraw::withdraw(QString idaccount, QByteArray webToken, QWidget *parent) :
     this->ui->summa->setValidator(rxv);
     this->idaccount = idaccount;
     this->webToken = webToken;
-
+    setAttribute(Qt::WA_DeleteOnClose);
     QPixmap bkgnd(":/graphics/graphics/graphics/pic.png"); //tässä luodaan taustagrafiikka
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;

@@ -41,6 +41,7 @@ padding: 2px 2px;
 }
 #label,#label_2 {
 color: rgb(14, 136, 37);
+ font-family:monofonto;
 }
 </string>
   </property>
@@ -113,6 +114,7 @@ color: rgb(14, 136, 37);
     <widget class="QListWidget" name="logList">
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>30</pointsize>
       </font>
      </property>
@@ -123,7 +125,8 @@ border-color: rgb(14, 136, 37);
 border-radius: 10px;
 padding: 2px 2px;
 background-color: rgb(0, 0, 0);
-color: rgb(14, 136, 37);</string>
+color: rgb(14, 136, 37);
+ font-family:monofonto;</string>
      </property>
     </widget>
    </item>
@@ -147,6 +150,7 @@ color: rgb(14, 136, 37);</string>
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>40</pointsize>
       </font>
      </property>

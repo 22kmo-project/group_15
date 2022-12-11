@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>391</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,6 +22,7 @@ border-width: 2px;
 border-color: rgb(14, 136, 37);
 border-radius: 10px;
 padding: 2px 2px;
+font-family:monofonto;
 }
 #pushButton:hover{
 
@@ -63,6 +64,7 @@ margin: 6px 6px;
      </property>
      <property name="font">
       <font>
+       <family>monofonto</family>
        <pointsize>40</pointsize>
       </font>
      </property>

@@ -10,7 +10,7 @@ moneysend::moneysend(QString idaccount, QByteArray webToken,QWidget *parent) :
         ui->setupUi(this);
         QRegExpValidator* rxv = new QRegExpValidator(QRegExp("\\d*"), this);
         this->ui->lineReceiver->setValidator(rxv);
-        //this->ui->lineAmount->setValidator(rxv);
+        this->ui->lineAmount->setValidator(rxv);
         this->idaccount = idaccount;
         this->webToken = webToken;
 
@@ -45,7 +45,7 @@ void moneysend::dataSlot(QNetworkReply *reply)
 
 void moneysend::sendMoney() {
     QString receiver = ui->lineReceiver->text();
-    QString amount = QString::number(ui->lineAmount->text().toInt());
+    QString amount = ui->lineAmount->text();
 
     QJsonObject jsonObj;
     jsonObj.insert("receiver", receiver);
@@ -86,7 +86,6 @@ this->sendMoney();
 void moneysend::on_lineAmount_textChanged(const QString &arg1)
 {
     emit activity();
-    this->ui->lineAmount->setText(QString("%1€").arg(arg1));
 }
 
 
