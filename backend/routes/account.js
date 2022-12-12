@@ -99,10 +99,11 @@ router.put("/transfer/:id", function (request, response) {
       response.send(err);
     } else {
       if (dbResult.length > 0) {
-        response.send(false);
+        response.send(true);
+        console.log(dbResult);
       } else {
         console.log(dbResult);
-        response.send(true);
+        response.send(false);
       }
     }
   });

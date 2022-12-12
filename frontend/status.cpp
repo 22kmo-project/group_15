@@ -71,7 +71,9 @@ void status::logSlot(QNetworkReply *reply)
     QString item="";
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        item="Summa: " + QString::number(json_obj["withdraw_amount"].toDouble())+"€ , Aika: "+json_obj["transaction_time"].toString()+" , Tapahtuman tyyppi: "+
+        QString temp = json_obj["transaction_time"].toString();
+        QStringList tempSplit = temp.split(".");
+        item="Summa: " + QString::number(json_obj["withdraw_amount"].toDouble())+"€ , Aika: "+tempSplit[0]+" , Tapahtuman tyyppi: "+
                json_obj["transaction_type"].toString();
         logitems<< item;
     }

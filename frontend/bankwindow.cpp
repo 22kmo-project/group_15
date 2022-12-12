@@ -100,7 +100,7 @@ void BankWindow::userSlot(QNetworkReply *reply)
 
     name = json_obj["fname"].toString() + " " + json_obj["lname"].toString();
 
-    ui->labelInfo->setText("ASIAKAS: " +name.toUpper()+"!");
+    ui->labelInfo->setText("ASIAKAS: " +name.toUpper());
 
     reply->deleteLater();
     dataManager->deleteLater();

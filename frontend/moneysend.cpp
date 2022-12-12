@@ -27,12 +27,12 @@ moneysend::~moneysend()
 void moneysend::dataSlot(QNetworkReply *reply)
 {
 
-    qDebug()<<reply->readAll();
+    //qDebug()<<reply->readAll();
     response_data=reply->readAll();
     int test=QString::compare(response_data,"false");
     qDebug()<< test;
     if(test==0){
-        siirto = "SIIRTO ONNISTUI";;
+        siirto = "SIIRTO ONNISTUI";
     }
     else {siirto = "SIIRTO EPÄONNISTUI";}
 
