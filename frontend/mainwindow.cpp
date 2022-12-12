@@ -153,7 +153,7 @@ void MainWindow::onLogout() { this->show(); }
 
 void MainWindow::logIn(bool credit) {
 
-  objectBankWindow = new BankWindow(cardnum, credit, token, iduser,this);
+  objectBankWindow = new BankWindow(cardnum, credit, token, iduser);
 
   //yhdistetään signaali onLogout slottiin, jotta ikkuna saadaan näkyviin kirjautumisen jälkeen
   QObject::connect(objectBankWindow, &BankWindow::loggedout, this,
